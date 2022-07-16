@@ -7,6 +7,7 @@ import API from '../util/api';
 export default function CreateRequestsPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     console.log(errors);
+    
     const onSubmit = async (data) => {
         console.log(data.DosageCount)
         console.log(data.DosagePerDay)

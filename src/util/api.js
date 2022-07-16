@@ -4,7 +4,7 @@ let BASE_API_URL = "http://localhost:8080";
 
 let API = axios.create({
     baseURL: BASE_API_URL,
-    timeout: 1000
+    timeout: 10000
 });
 
 

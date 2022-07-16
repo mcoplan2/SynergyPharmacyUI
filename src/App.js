@@ -2,9 +2,9 @@ import {Route, Routes, Navigate} from "react-router-dom"
 import './App.css';
 import Navbar from './components/Navbar'
 import HomePage from "./pages/HomePage";
-import RequestForm from "./components/RequestForm"
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { useState } from "react";
+import CreateRequestsPage from "./pages/CreateRequestsPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -31,6 +31,7 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/requests" element={<CreateRequestsPage />} />
       {/*
       {appUser && 
         <>

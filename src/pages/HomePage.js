@@ -1,8 +1,8 @@
 import {Link} from "react-router-dom";
-import RequestForm from "../components/RequestForm";
+import RequestForm from "../components/SelectMedicationsMenu";
 
 export default function HomePage(){
     return <>
-        <RequestForm />
+        
     </>
 }

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { MenuItem } from '@mui/material';
 import {useNavigate} from "react-router-dom"
 
-const pages = ["Flashcards"]
+const pages = ["Requests"]
 //                              object destructuring of the props object
 export default function Navbar({user}){
 
@@ -33,7 +33,7 @@ export default function Navbar({user}){
                 </MenuItem>
                 
 
-                {user && pages.map((page) => (
+                {pages.map((page) => (
                 <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>

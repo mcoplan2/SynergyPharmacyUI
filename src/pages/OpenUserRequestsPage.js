@@ -2,15 +2,15 @@ import { useEffect, useState } from "react"
 import Request from "../components/Request";
 import API from "../util/api"
 
-// THIS WILL EVENTUALLY BE ADMIN ONLY
-export default function OpenRequestsPage(){
+
+export default function OpenUserRequestsPage(){
 
     const [getRequests, setRequests] = useState('');
 
     useEffect(() => {
         async function getAllRequests(){   
             try {
-                const res = await API.get("/requests")
+                const res = await API.get("/requests/user/1/type/OPEN")
                 setRequests(res.data)
             } catch(error) {
                 console.log(error)

@@ -16,7 +16,7 @@ export default function CreateRequestsPage() {
                 dosageCount: data.DosageCount,
                 dosageFreq: data.DosagePerDay,
                 med: {
-                    id: 2
+                    id: data.Medication
                 },
                 creator : {
                     userId: 1

@@ -2,7 +2,7 @@ import React from 'react';
 import API from "../util/api"
 import { useEffect, useState } from "react"
 
-export default function RequestForm() {
+export default function SelectMedicationsMenu() {
     
   const [getMedications, setMedication] = useState([]);
 

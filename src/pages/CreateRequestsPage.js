@@ -7,11 +7,8 @@ import API from '../util/api';
 export default function CreateRequestsPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     console.log(errors);
-    
+
     const onSubmit = async (data) => {
-        console.log(data.DosageCount)
-        console.log(data.DosagePerDay)
-        console.log(data.Medication)
         try{
             await API.post('requests', {
                 dosageCount: data.DosageCount,

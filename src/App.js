@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 import CreateRequestsPage from "./pages/CreateRequestsPage";
+import OpenRequestsPage from "./pages/OpenRequestsPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -31,7 +32,8 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/requests" element={<CreateRequestsPage />} />
+      <Route path="/createrequest" element={<CreateRequestsPage />} />
+      <Route path="/openrequests" element={<OpenRequestsPage />} />
       {/*
       {appUser && 
         <>

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { MenuItem } from '@mui/material';
 import {useNavigate} from "react-router-dom"
 
-const pages = ["CreateRequest", "OpenRequests", "ApprovedUserRequests", "OpenUserRequests"]
+const pages = ["CreateRequest", "OpenRequests", "ApprovedUserRequests", "OpenUserRequests", "ApproveDenyRequests"]
 //                              object destructuring of the props object
 export default function Navbar({user}){
 

@@ -8,6 +8,7 @@ import CreateRequestsPage from "./pages/CreateRequestsPage";
 import OpenRequestsPage from "./pages/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/ApprovedUserRequestsPage";
 import OpenUserRequestsPage from "./pages/OpenUserRequestsPage";
+import ApproveDenyRequestsPage from "./pages/ApproveDenyRequestsPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -38,6 +39,7 @@ function App() {
       <Route path="/openrequests" element={<OpenRequestsPage />} />
       <Route path="/openuserrequests" element={<OpenUserRequestsPage />} />
       <Route path="/approveduserrequests" element={<ApprovedUserRequestsPage />} />
+      <Route path="/approvedenyrequests" element={<ApproveDenyRequestsPage />} />
       {/*
       {appUser && 
         <>

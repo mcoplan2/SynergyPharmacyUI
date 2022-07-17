@@ -49,8 +49,8 @@ function AuthNavbar(){
     const navigate = useNavigate();
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
-                <Toolbar>
+            <AppBar style={{backgroundColor: "blue"}}>
+                <Toolbar variant="dense">
                 <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Synergy Pharm

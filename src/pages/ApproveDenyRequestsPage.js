@@ -24,32 +24,42 @@ export default function ApproveDenyRequestsPage() {
         getAllRequests();
         }, []);
 
-        // TEST APPROVING WITH ONLY REQUEST ID?
-        // LINK BUTTONS VIA FUNCTION CALLING APU AND PASSING SELECTEDROWS.ID FOR APPROVE
-        // {nestedobject1: {nestedobject2: { name} } }?
-    console.log(selectedRows)
-    const onApproveSubmit = async (selectedRows) => {
+    const onApproveSubmit = async (request) => {
+        // Deconstruct the array of objects
+        const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
         try{
-            await API.post('requests/approve/1', {
-                dosageCount: 90,
-                dosageFreq: 23,
+            await API.post('requests/approve/3', {
+                id: id,
+                requestType: requestType,
+                dosageCount: dosageCount,
+                dosageFreq: dosageFreq,
                 creator: {
-                    userId: 1
+                    userId: creator.userId
                 },
                 med: {
-                    id: 3
+                    id: med.id
                 },
-                id: 12
             })
         } catch(error) {
             console.log(error)
         }
     }
 
-    const onDenySubmit = async ({selectedRows}) => {
+    const onDenySubmit = async (request) => {
+        // Deconstruct the array of objects
+        const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
         try{
-            await API.post('requests/deny/11', {
-                body: JSON.stringify(selectedRows)
+            await API.post('requests/deny/3', {
+                id: id,
+                requestType: requestType,
+                dosageCount: dosageCount,
+                dosageFreq: dosageFreq,
+                creator: {
+                    userId: creator.userId
+                },
+                med: {
+                    id: med.id
+                },
             })
         } catch(error) {
             console.log(error)
@@ -128,9 +138,9 @@ export default function ApproveDenyRequestsPage() {
           }}
       />
       <div>
-      <Button color="success" variant="outlined" onClick={onApproveSubmit} sx={{backgroundColor:'black'}}>Approve</Button>
+      <Button color="success" variant="outlined" onClick={() => onApproveSubmit(selectedRows)} sx={{backgroundColor:'black'}}>Approve</Button>
       </div>
-      <Button color="error" variant="outlined" onClick={()=>console.log({selectedRows})} sx={{backgroundColor:'black'}}>Deny</Button>
+      <Button color="error" variant="outlined" onClick={() => onDenySubmit(selectedRows)} sx={{backgroundColor:'black'}}>Deny</Button>
     </Box>
   );
 }

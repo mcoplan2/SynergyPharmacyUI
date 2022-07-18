@@ -35,11 +35,11 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/createrequest" element={<CreateRequestsPage />} />
-      <Route path="/openrequests" element={<OpenRequestsPage />} />
-      <Route path="/openuserrequests" element={<OpenUserRequestsPage />} />
-      <Route path="/approveduserrequests" element={<ApprovedUserRequestsPage />} />
-      <Route path="/approvedenyrequests" element={<ApproveDenyRequestsPage />} />
+      <Route path="/requests/createrequest" element={<CreateRequestsPage />} />
+      <Route path="/requests/openrequests" element={<OpenRequestsPage />} />
+      <Route path="/requests/approveduserrequests" element={<OpenUserRequestsPage />} />
+      <Route path="/requests/openuserrequests" element={<ApprovedUserRequestsPage />} />
+      <Route path="/requests/approvedenyrequests" element={<ApproveDenyRequestsPage />} />
       {/*
       {appUser && 
         <>

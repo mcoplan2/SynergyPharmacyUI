@@ -35,11 +35,11 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/requests/createrequest" element={<CreateRequestsPage />} />
-      <Route path="/requests/openrequests" element={<OpenRequestsPage />} />
-      <Route path="/requests/approveduserrequests" element={<OpenUserRequestsPage />} />
-      <Route path="/requests/openuserrequests" element={<ApprovedUserRequestsPage />} />
-      <Route path="/requests/approvedenyrequests" element={<ApproveDenyRequestsPage />} />
+      <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
+      <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />
+      <Route path="/refills/yourapprovedrefills" element={<OpenUserRequestsPage />} />
+      <Route path="/refills/allopenrefills" element={<ApprovedUserRequestsPage />} />
+      <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
       {/*
       {appUser && 
         <>

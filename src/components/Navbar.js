@@ -5,42 +5,12 @@ import Typography from '@mui/material/Typography';
 import { MenuItem, MenuList } from '@mui/material';
 import {useNavigate} from "react-router-dom"
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
-import { useEffect, useState } from "react"
-import { red } from '@mui/material/colors';
+import { useState } from "react"
 
-const requestPages = ["CreateRequest", "OpenRequests", "ApprovedUserRequests", "OpenUserRequests", "ApproveDenyRequests"]
-
-const StyledMenu = styled((props) => (
-    <Menu
-      elevation={0}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    '& .MuiPaper-root': {
-      borderRadius: 6,
-      marginTop: theme.spacing(1),
-      minWidth: 180,
-      color: red,
-      boxShadow:
-        'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-      '& .MuiMenu-list': {
-        padding: '4px 0',
-      },
-     
-    },
-  }));
+const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
 
 export default function Navbar({user}){
 
@@ -57,7 +27,7 @@ export default function Navbar({user}){
     };
 
     const handleNavClose = (page) => {
-        navigate(`/requests/${page.toLowerCase()}`);
+        navigate(`/refills/${page.toLowerCase().replace(/\s/g, "")}`);
         setAnchorEl(null);
     };
 
@@ -79,9 +49,9 @@ export default function Navbar({user}){
                     sx={{margin:1}}
                     color="warning"
                 >
-                    Requests
+                    Refills
                 </Button>
-                <StyledMenu
+                <Menu
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
@@ -92,7 +62,7 @@ export default function Navbar({user}){
                 </MenuList>
                 ))}
                 
-                </StyledMenu>
+                </Menu>
                 
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
@@ -107,7 +77,7 @@ export default function Navbar({user}){
                 >
                     ADD IT HERE
                 </Button>
-                <StyledMenu
+                <Menu
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
@@ -118,7 +88,7 @@ export default function Navbar({user}){
                 </MenuList>
                 ))}
                 
-                </StyledMenu>
+                </Menu>
 
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
@@ -133,7 +103,7 @@ export default function Navbar({user}){
                 >
                     ADD IT HERE
                 </Button>
-                <StyledMenu
+                <Menu
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
@@ -144,7 +114,7 @@ export default function Navbar({user}){
                 </MenuList>
                 ))}
                 
-                </StyledMenu>
+                </Menu>
 
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
@@ -159,7 +129,7 @@ export default function Navbar({user}){
                 >
                     ADD IT HERE
                 </Button>
-                <StyledMenu
+                <Menu
                     anchorEl={anchorEl}
                     open={open}
                     onClose={handleClose}
@@ -170,7 +140,7 @@ export default function Navbar({user}){
                 </MenuList>
                 ))}
                 
-                </StyledMenu>
+                </Menu>
                 </Toolbar>
                 
             </AppBar>

@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import SelectMedicationsMenu from '../../components/SelectMedicationsMenu';
 import API from '../../util/api';
 import { Box } from '@mui/material';
+import Button from '@mui/material/Button';
 
 export default function CreateRequestsPage() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    console.log(errors);
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
         try{
@@ -28,7 +28,7 @@ export default function CreateRequestsPage() {
     return (
         <Box
             sx={{
-                width: 700,
+                width: 650,
                 height: 400,
                 backgroundColor: 'black',
                 margin: 15,
@@ -39,7 +39,7 @@ export default function CreateRequestsPage() {
                 },
                 }}>
             <form id="test" onSubmit={handleSubmit(onSubmit)}>
-                <h1 style={{color:'white', padding:10}}>Refill Request: </h1>
+                <h1 style={{color:'white'}}>Refill Request: </h1>
                 <hr></hr>
                 <div>
                 <h3 style={{color:'white'}}>Select your Medication: </h3>
@@ -57,8 +57,9 @@ export default function CreateRequestsPage() {
                 <input type="text" placeholder="Dosage Per Day" {...register("DosagePerDay", {required: true})} />
                 <div><p></p></div>
                 <hr></hr>
-                <input type="submit" />
+                <Button variant="outlined" color="warning" size="large" type="submit">Submit</Button>
             </form>
         </Box>
+        
     );
 }

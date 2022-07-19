@@ -119,7 +119,22 @@ export default function ApproveDenyRequestsPage() {
 
     
   return (
-    <Box sx={{ height: 500, maxWidth: 1000, minWidth:500, padding:15}}>
+    <Box sx={{
+        width: 900,
+        height: 420,
+        backgroundColor: 'black',
+        margin: 15,
+        padding: 2,
+        paddingBottom: 15,
+        textAlign:"center",
+        border: '1px solid orange',
+        '&:hover': {
+            backgroundColor: 'black',
+            opacity: [0.9, 0.8, 0.95],
+            border: '1px solid orange'
+        },
+    }}>
+        <h4 style={{color:'white'}}>Refill Admin Panel</h4>
       <DataGrid
         sx={{backgroundColor:'black'}}
         rows={getRequests}
@@ -137,9 +152,9 @@ export default function ApproveDenyRequestsPage() {
             setSelectedRows(selectedRows);
           }}
       />
-      <div>
-      <Button color="success" variant="outlined" onClick={() => onApproveSubmit(selectedRows)} sx={{backgroundColor:'black'}}>Approve</Button>
-      </div>
+      <Button color="success" variant="outlined"
+        onClick={() => onApproveSubmit(selectedRows)} sx={{backgroundColor:'black', margin:2}}>Approve</Button>
+      
       <Button color="error" variant="outlined" onClick={() => onDenySubmit(selectedRows)} sx={{backgroundColor:'black'}}>Deny</Button>
     </Box>
   );

@@ -26,21 +26,23 @@ export default function CreateRequestsPage() {
     }
     
     return (
-        <Box
+        <Box 
             sx={{
                 width: 650,
-                height: 400,
+                height: 420,
                 backgroundColor: 'black',
-                margin: 15,
+                margin: 5,
                 textAlign:"center",
+                border: '1px solid orange',
                 '&:hover': {
                     backgroundColor: 'black',
-                    opacity: [1.2, 0.8, 0.95],
+                    opacity: [0.9, 0.8, 0.95],
+                    border: '1px solid white'
                 },
-                }}>
+            }}>
             <form id="test" onSubmit={handleSubmit(onSubmit)}>
                 <h1 style={{color:'white'}}>Refill Request: </h1>
-                <hr></hr>
+                <hr color="orange"></hr>
                 <div>
                 <h3 style={{color:'white'}}>Select your Medication: </h3>
                 <select {...register("Medication", { required: true })}>
@@ -56,8 +58,8 @@ export default function CreateRequestsPage() {
                 <h3 style={{color:'white'}}>Select your Dosage Frequency: </h3>
                 <input type="text" placeholder="Dosage Per Day" {...register("DosagePerDay", {required: true})} />
                 <div><p></p></div>
-                <hr></hr>
-                <Button variant="outlined" color="warning" size="large" type="submit">Submit</Button>
+                <hr color="orange"></hr>
+                <Button variant="contained" color="warning" size="large" type="submit">Submit</Button>
             </form>
         </Box>
         

@@ -5,21 +5,9 @@ import Typography from '@mui/material/Typography';
 import { MenuItem } from '@mui/material';
 import {useNavigate} from "react-router-dom"
 
-const pages = ["CreateRequest", "OpenRequests", "ApprovedUserRequests", "OpenUserRequests", "ApproveDenyRequests"]
-//                              object destructuring of the props object
-export default function Navbar({user}){
+const pages = ["CreateMedicines", "OpenMedicines", "OpenUserMedicines"]
 
-    // What is Conditional Rendering??
-    //      Change what is rendered based upon some kind of condition
-    // if the user exists render one thing
-    // if they don't render something different
-    // if(props.user){
-    //     return <h1>Hello {props.user.name}!</h1>
-    // } else {
-    //     return <h1>Please log in!! :D</h1>
-    // }
-    // Typically, React devs use ternary based conditonal rendering
-    //                                  return   <condition> ? <truthy> : <falsey>
+export default function Navbar({user}){
 
     const navigate = useNavigate();
     return (
@@ -28,7 +16,7 @@ export default function Navbar({user}){
                 <Toolbar>
                 <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Synergy Pharm
+                    Synergy Pharmacy
                     </Typography>
                 </MenuItem>
                 
@@ -53,7 +41,7 @@ function AuthNavbar(){
                 <Toolbar variant="dense">
                 <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Synergy Pharm
+                    Synergy Pharmacy
                     </Typography>
                 </MenuItem>
                 

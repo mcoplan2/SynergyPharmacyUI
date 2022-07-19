@@ -2,26 +2,29 @@ import React from 'react';
 import { Paper, Typography, Stack } from "@mui/material";
 
 
-export default function Request({request}) {
+export default function Medicine({medicine}) {
     
 
   return (
         <Paper spacing={4} elevation={20} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
         <Typography >
-            {request.creator.firstName} {request.creator.lastName}
+            {medicine.creator.firstName} {medicine.creator.lastName}
         </Typography>
 
         <Typography align={"center"} >
-            <b>Medication: </b>{request.med.name}
+            <b>Medication: </b>{medicine.med.name}
         </Typography>
         <Typography align={"center"} >
-            <b>Dosage:</b> {request.dosageCount}
+            <b>Amount In Stock:</b> {medicine.amountInStock}
         </Typography>
         <Typography align={"center"} >
-            <b>Amount Per Day:</b> {request.dosageFreq}
+            <b>Price Per Unit:</b> {medicine.pricePerUnit}
         </Typography>
         <Typography align={"center"} >
-            <b>Status:</b> {request.requestType}
+            <b>Type:</b> {medicine.type}
+        </Typography>
+        <Typography align={"center"} >
+            <b>Status:</b> {medicine.status}
         </Typography>
             
     </Paper>

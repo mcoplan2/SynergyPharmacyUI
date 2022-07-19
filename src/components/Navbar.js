@@ -10,24 +10,30 @@ import Menu from '@mui/material/Menu';
 import { useState } from "react"
 
 const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
+const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
 
 export default function Navbar({user}){
 
     const [anchorEl, setAnchorEl] = useState(null);
+    const [selectedDropdown, setSelectedDropdown] = useState(null);
+
     const navigate = useNavigate();
     const open = Boolean(anchorEl);
 
-    const handleClick = (event) => {
+    const handleClick = (event, dropState) => {
         setAnchorEl(event.currentTarget);
+        setSelectedDropdown(dropState);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+        setSelectedDropdown(null);
     };
 
     const handleNavClose = (page) => {
-        navigate(`/refills/${page.toLowerCase().replace(/\s/g, "")}`);
+        navigate(`/${selectedDropdown}/${page.toLowerCase().replace(/\s/g, "")}`);
         setAnchorEl(null);
+        setSelectedDropdown(null);
     };
 
     return (
@@ -43,51 +49,57 @@ export default function Navbar({user}){
                 <Button
                     variant="contained"
                     disableElevation
-                    onClick={handleClick}
+                    onClick={(e)=>{handleClick(e, "refills");}}
                     endIcon={<KeyboardArrowDownIcon />}
                     sx={{margin:1}}
                     color="warning"
                 >
                     Refills
                 </Button>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                {requestPages.map((page) => (
-                <MenuList key={page} onClick={() => (handleNavClose(page))}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuList>
-                ))}
-                
-                </Menu>
+
+                {selectedDropdown == "refills" &&
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                    {requestPages.map((page) => (
+                    <MenuList key={page} onClick={() => (handleNavClose(page)) } >
+                    <Typography textAlign="center">{page}</Typography>
+                    </MenuList>
+                    ))}
+                    
+                    </Menu>
+                }
                 
                 {/* -----------------------------------------------------------------------------------*/}
-                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
+                {/* Button Section for payments                                                        */}
                 {/* -----------------------------------------------------------------------------------*/}
                 <Button
                     variant="contained"
                     disableElevation
-                    onClick={handleClick}
+                    onClick={(e) =>{handleClick(e, "payments")}}
                     endIcon={<KeyboardArrowDownIcon />}
                     sx={{margin:1}}
                     color="warning"
                 >
-                    ADD IT HERE
+                    Payments
                 </Button>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                {requestPages.map((page) => (
-                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuList>
-                ))}
-                
-                </Menu>
+
+                {selectedDropdown == "payments" &&
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                    {paymentPages.map((page) => (
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <Typography textAlign="center">{page}</Typography>
+                    </MenuList>
+                    ))}
+                    
+                    </Menu>
+                }       
 
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
@@ -102,18 +114,21 @@ export default function Navbar({user}){
                 >
                     ADD IT HERE
                 </Button>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                {requestPages.map((page) => (
-                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuList>
-                ))}
-                
-                </Menu>
+
+                {selectedDropdown == "B" &&
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                    {requestPages.map((page) => (
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <Typography textAlign="center">{page}</Typography>
+                    </MenuList>
+                    ))}
+                    
+                    </Menu>
+                }
 
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
@@ -128,18 +143,23 @@ export default function Navbar({user}){
                 >
                     ADD IT HERE
                 </Button>
-                <Menu
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                >
-                {requestPages.map((page) => (
-                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuList>
-                ))}
-                
-                </Menu>
+
+                {selectedDropdown == "D" &&
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                    {requestPages.map((page) => (
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <Typography textAlign="center">{page}</Typography>
+                    </MenuList>
+                    ))}
+                    
+                    </Menu>
+                }
+
+
                 </Toolbar>
                 
             </AppBar>

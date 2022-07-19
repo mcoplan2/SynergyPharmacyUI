@@ -4,11 +4,11 @@ import Navbar from './components/Navbar'
 import HomePage from "./pages/HomePage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { useState } from "react";
-import CreateRequestsPage from "./pages/CreateRequestsPage";
-import OpenRequestsPage from "./pages/OpenRequestsPage";
-import ApprovedUserRequestsPage from "./pages/ApprovedUserRequestsPage";
-import OpenUserRequestsPage from "./pages/OpenUserRequestsPage";
-import ApproveDenyRequestsPage from "./pages/ApproveDenyRequestsPage";
+import CreateRequestsPage from "./pages/requests/CreateRequestsPage";
+import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
+import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";
+import OpenUserRequestsPage from "./pages/requests/OpenUserRequestsPage";
+import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,11 +35,11 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/createrequest" element={<CreateRequestsPage />} />
-      <Route path="/openrequests" element={<OpenRequestsPage />} />
-      <Route path="/openuserrequests" element={<OpenUserRequestsPage />} />
-      <Route path="/approveduserrequests" element={<ApprovedUserRequestsPage />} />
-      <Route path="/approvedenyrequests" element={<ApproveDenyRequestsPage />} />
+      <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
+      <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />
+      <Route path="/refills/yourapprovedrefills" element={<OpenUserRequestsPage />} />
+      <Route path="/refills/allopenrefills" element={<ApprovedUserRequestsPage />} />
+      <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
       {/*
       {appUser && 
         <>

@@ -2,26 +2,34 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { MenuItem } from '@mui/material';
+import { MenuItem, MenuList } from '@mui/material';
 import {useNavigate} from "react-router-dom"
+import Button from '@mui/material/Button';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Menu from '@mui/material/Menu';
+import { useState } from "react"
 
-const pages = ["CreateRequest", "OpenRequests", "ApprovedUserRequests", "OpenUserRequests", "ApproveDenyRequests"]
-//                              object destructuring of the props object
+const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
+
 export default function Navbar({user}){
 
-    // What is Conditional Rendering??
-    //      Change what is rendered based upon some kind of condition
-    // if the user exists render one thing
-    // if they don't render something different
-    // if(props.user){
-    //     return <h1>Hello {props.user.name}!</h1>
-    // } else {
-    //     return <h1>Please log in!! :D</h1>
-    // }
-    // Typically, React devs use ternary based conditonal rendering
-    //                                  return   <condition> ? <truthy> : <falsey>
-
+    const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const handleNavClose = (page) => {
+        navigate(`/refills/${page.toLowerCase().replace(/\s/g, "")}`);
+        setAnchorEl(null);
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -32,13 +40,108 @@ export default function Navbar({user}){
                     </Typography>
                 </MenuItem>
                 
-
-                {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                <Button
+                    variant="contained"
+                    disableElevation
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{margin:1}}
+                    color="warning"
+                >
+                    Refills
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                {requestPages.map((page) => (
+                <MenuList key={page} onClick={() => (handleNavClose(page))}>
                   <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                </MenuList>
                 ))}
+                
+                </Menu>
+                
+                {/* -----------------------------------------------------------------------------------*/}
+                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
+                {/* -----------------------------------------------------------------------------------*/}
+                <Button
+                    variant="contained"
+                    disableElevation
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{margin:1}}
+                    color="warning"
+                >
+                    ADD IT HERE
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                {requestPages.map((page) => (
+                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuList>
+                ))}
+                
+                </Menu>
+
+                {/* -----------------------------------------------------------------------------------*/}
+                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
+                {/* -----------------------------------------------------------------------------------*/}
+                <Button
+                    variant="contained"
+                    disableElevation
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{margin:1}}
+                    color="warning"
+                >
+                    ADD IT HERE
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                {requestPages.map((page) => (
+                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuList>
+                ))}
+                
+                </Menu>
+
+                {/* -----------------------------------------------------------------------------------*/}
+                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
+                {/* -----------------------------------------------------------------------------------*/}
+                <Button
+                    variant="contained"
+                    disableElevation
+                    onClick={handleClick}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{margin:1}}
+                    color="warning"
+                >
+                    ADD IT HERE
+                </Button>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleClose}
+                >
+                {requestPages.map((page) => (
+                <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuList>
+                ))}
+                
+                </Menu>
                 </Toolbar>
+                
             </AppBar>
         </Box>
     )
@@ -57,10 +160,10 @@ function AuthNavbar(){
                     </Typography>
                 </MenuItem>
                 
-                {pages.map((page) => (
-                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                {requestPages.map((page) => (
+                <MenuList key={page.submenu} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                  <Typography textAlign="center">{page.title}</Typography>
+                </MenuList>
                 ))}
                 </Toolbar>
             </AppBar>

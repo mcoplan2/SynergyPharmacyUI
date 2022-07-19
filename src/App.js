@@ -9,6 +9,9 @@ import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";
 import OpenUserRequestsPage from "./pages/requests/OpenUserRequestsPage";
 import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
+import CreatePaymentsPage from "./pages/payments/CreatePaymentsPage";
+import OutstandingPaymentsPage from "./pages/payments/OutstandingPaymentsPage";
+import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -35,11 +38,17 @@ function App() {
 
     <Routes>
       <Route path="/" element={<HomePage />} />
+
       <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
       <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />
       <Route path="/refills/yourapprovedrefills" element={<OpenUserRequestsPage />} />
       <Route path="/refills/allopenrefills" element={<ApprovedUserRequestsPage />} />
       <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
+
+      <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
+      <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
+      <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
+
       {/*
       {appUser && 
         <>

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-import Request from "../components/Request";
-import API from "../util/api"
+import Request from "../../components/Request";
+import API from "../../util/api"
 
 
-export default function OpenUserRequestsPage(){
+export default function ApprovedUserRequestsPage(){
 
     const [getRequests, setRequests] = useState('');
 
     useEffect(() => {
         async function getAllRequests(){   
             try {
-                const res = await API.get("/requests/user/1/type/OPEN")
+                const res = await API.get("/requests/user/1/type/APPROVED")
                 setRequests(res.data)
             } catch(error) {
                 console.log(error)

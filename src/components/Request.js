@@ -6,7 +6,7 @@ export default function Request({request}) {
     
 
   return (
-        <Paper spacing={4} elevation={20} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
+    <Paper spacing={4} elevation={20} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
         <Typography >
             {request.creator.firstName} {request.creator.lastName}
         </Typography>
@@ -22,8 +22,7 @@ export default function Request({request}) {
         </Typography>
         <Typography align={"center"} >
             <b>Status:</b> {request.requestType}
-        </Typography>
-            
+        </Typography>     
     </Paper>
   )
         

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react"
-import API from '../util/api';
+import API from '../../util/api';
 import { Button } from '@mui/material';
 
 

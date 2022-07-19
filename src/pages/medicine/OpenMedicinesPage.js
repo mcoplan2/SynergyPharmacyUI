@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-import Medicine from "../components/Medicine";
-import API from "../util/api"
+import Medicine from "../../components/Medicine";
+import API from '../../util/api';
 
-
-export default function OpenUserMedicinesPage(){
+// THIS WILL EVENTUALLY BE ADMIN ONLY
+export default function OpenMedicinesPage(){
 
     const [getMedicines, setMedicines] = useState('');
 
     useEffect(() => {
         async function getAllMedicines(){   
             try {
-                const res = await API.get("/medicines/1")
+                const res = await API.get("/medicines/user/1/status/INSTOCK")
                 setMedicines(res.data)
             } catch(error) {
                 console.log(error)

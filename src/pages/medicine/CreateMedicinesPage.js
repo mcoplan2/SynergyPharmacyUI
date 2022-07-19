@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Paper from '@mui/material/Paper';
 //import SelectMedicationsMenu from '../components/SelectMedicationsMenu';
-import API from '../util/api';
+import API from '../../util/api';
 import Button from '@mui/material/Button';
 import { color } from '@mui/system';
 
@@ -30,7 +30,7 @@ export default function CreateMedicinesPage() {
     }
     
     return (
-        <Paper elevation={10}  sx={{ margin:3, maxWidth: 600, minHeight:230, backgroundColor: 'cornflowerblue', textAlign: "center"}}>
+        <Paper elevation={10}  sx={{ margin:3, maxWidth: 600, minHeight:230, backgroundColor: 'black', textAlign: "center"}}>
             <form id="test" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Create a Medication</h2>
                 <div>

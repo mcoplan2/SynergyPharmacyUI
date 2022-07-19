@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
-import Medicine from "../components/Medicine";
-import API from "../util/api"
+import Medicine from "../../components/Medicine";
+import API from '../../util/api';
 
-// THIS WILL EVENTUALLY BE ADMIN ONLY
-export default function OpenMedicinesPage(){
+
+export default function OpenUserMedicinesPage(){
 
     const [getMedicines, setMedicines] = useState('');
 
     useEffect(() => {
         async function getAllMedicines(){   
             try {
-                const res = await API.get("/medicines")
+                const res = await API.get("/medicines/1")
                 setMedicines(res.data)
             } catch(error) {
                 console.log(error)
@@ -22,7 +22,7 @@ export default function OpenMedicinesPage(){
         console.log(getMedicines)
     return <>
         {getMedicines && getMedicines.map((medicine) => 
-            <medicine key={medicine.id} medicine={medicine} />
+            <Medicine key={medicine.id} medicine={medicine} />
         )}
 
         {!getMedicines && <h3>Loading Medicines...</h3>}

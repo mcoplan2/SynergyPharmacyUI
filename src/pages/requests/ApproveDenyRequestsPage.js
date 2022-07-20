@@ -2,21 +2,24 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react"
-import API from '../../util/api';
 import { Button } from '@mui/material';
+import { updateApi } from '../../util/api';
+import { getUserById } from '../../util/api';
+import {useNavigate} from "react-router-dom"
 
 
-export default function ApproveDenyRequestsPage() {
+export default function ApproveDenyRequestsPage({appUser}) {
 
     const [selectedRows, setSelectedRows] = useState([]);
     const [getRequests, setRequests] = useState('');
 
     useEffect(() => {
         async function getAllRequests(){   
+            const { username, token } = appUser;
             try {
-                const res = await API.get("/requests/type/OPEN")
+                const tokenAPI = updateApi(token);
+                const res = await tokenAPI.get("/requests/type/OPEN")
                 setRequests(res.data)
-                console.log(res.data)
             } catch(error) {
                 console.log(error)
             }
@@ -27,8 +30,11 @@ export default function ApproveDenyRequestsPage() {
     const onApproveSubmit = async (request) => {
         // Deconstruct the array of objects
         const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
+        const { username, token } = appUser;
+        const userId = await getUserById(username);
         try{
-            await API.post('requests/approve/3', {
+            const tokenAPI = updateApi(token);
+            await tokenAPI.post('requests/approve/'+`${userId}`, {
                 id: id,
                 requestType: requestType,
                 dosageCount: dosageCount,
@@ -48,8 +54,11 @@ export default function ApproveDenyRequestsPage() {
     const onDenySubmit = async (request) => {
         // Deconstruct the array of objects
         const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
+        const { username, token } = appUser;
+        const userId = await getUserById(username);
         try{
-            await API.post('requests/deny/3', {
+            const tokenAPI = updateApi(token);
+            await tokenAPI.post('requests/deny/'+`${userId}`, {
                 id: id,
                 requestType: requestType,
                 dosageCount: dosageCount,

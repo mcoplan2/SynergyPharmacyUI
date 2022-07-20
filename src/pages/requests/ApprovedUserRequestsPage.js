@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
 import Request from "../../components/Request";
-import API from "../../util/api"
+import { updateApi } from "../../util/api";
+import { getUserById } from "../../util/api";
 
 
-export default function ApprovedUserRequestsPage(){
+export default function ApprovedUserRequestsPage({appUser}){
 
     const [getRequests, setRequests] = useState('');
 
     useEffect(() => {
         async function getAllRequests(){   
+            const { username, token } = appUser;
+            const userId = await getUserById(username);
             try {
-                const res = await API.get("/requests/user/1/type/APPROVED")
+                const tokenAPI = updateApi(token);
+                const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/APPROVED")
                 setRequests(res.data)
             } catch(error) {
                 console.log(error)
@@ -25,6 +29,6 @@ export default function ApprovedUserRequestsPage(){
             <Request key={request.id} request={request} />
         )}
 
-        {!getRequests && <h3>Loading Requests...</h3>}
+        {!getRequests || getRequests==0 && <h3>Loading Requests...</h3>}
     </>
 }

@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react"
 import Request from "../../components/Request";
-import API from "../../util/api"
+import API, { updateApi } from "../../util/api"
+import { getUserById } from "../../util/api";
 
 
-export default function OpenUserRequestsPage(){
+export default function OpenUserRequestsPage({appUser}){
 
     const [getRequests, setRequests] = useState('');
 
     useEffect(() => {
         async function getAllRequests(){   
+            const { username, token } = appUser;
+            const userId = await getUserById(username);
             try {
-                const res = await API.get("/requests/user/1/type/OPEN")
+                const tokenAPI = updateApi(token);
+                console.log(tokenAPI)
+                const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/OPEN")
                 setRequests(res.data)
             } catch(error) {
                 console.log(error)

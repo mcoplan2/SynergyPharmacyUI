@@ -43,9 +43,9 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
 
-      <Route path="/medicines/createmedicines" element={<CreateMedicinesPage />} />
-      <Route path="/medicines/" element={<OpenMedicinesPage />} />
-      <Route path="/medicines/usermedicines" element={<OpenUserMedicinesPage />} />
+      <Route path="/medicines/addmedicine" element={<CreateMedicinesPage />} />
+      <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage />} />
+      <Route path="/medicines/viewyourmedicine" element={<OpenUserMedicinesPage />} />
 
       <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
       <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />

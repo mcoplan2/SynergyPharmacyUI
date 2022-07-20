@@ -11,7 +11,7 @@ import { useState } from "react"
 
 const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
 const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
-const medicinePages = ["CreateMedicines", "OpenMedicines", "OpenUserMedicines"]
+const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
 
 export default function Navbar({user}){
 

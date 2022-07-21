@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react"
-import API from '../../util/api';
+import API, { updateApi } from '../../util/api';
 import Payment from "../../components/Payment";
+import { getUserById } from '../../util/api';
 
 
-export default function OutstandingPaymentsPage(){
+
+export default function OutstandingPaymentsPage({appUser}){
     const [getPayments, setPayments] = useState('');
 
     useEffect(() => {
         async function getAllPayments(){   
+            const { username, token } = appUser;
+            const userId = await getUserById(username);
+            console.log(username)
             try {
-                {/* TODO:  decide which user to harass for payment information  */ }
-                const res = await API.get("/payments/userid/0/paystatus/UNPAID")
+                const tokenAPI = updateApi(token);
+                const res = await tokenAPI.get("/payments/userid/"+`${userId}` + "/paystatus/UNPAID")
                 setPayments(res.data)
             } catch(error) {
                 console.log(error)

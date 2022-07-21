@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import API from '../../util/api';
 import Payment from "../../components/Payment";
 
-export default function PaymentHistoryPage(){
+export default function PaymentHistoryPage({appUser}){
     const [getPayments, setPayments] = useState('');
 
     useEffect(() => {

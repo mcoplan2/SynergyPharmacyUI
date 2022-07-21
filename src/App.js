@@ -1,4 +1,4 @@
-import {Route, Routes, Navigate} from "react-router-dom"
+import {Route, Routes} from "react-router-dom"
 import './App.css';
 import Navbar from './components/Navbar'
 import HomePage from "./pages/HomePage";
@@ -6,7 +6,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { useState } from "react";
 import CreateMedicinesPage from "./pages/medicine/CreateMedicinesPage";
 import OpenMedicinesPage from "./pages/medicine/OpenMedicinesPage";
-import OpenUserMedicinesPage from "./pages/medicine/OpenUserMedicinesPage";
 import CreateRequestsPage from "./pages/requests/CreateRequestsPage";
 import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";

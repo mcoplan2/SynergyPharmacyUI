@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { updateApi } from '../../util/api';
 import Button from '@mui/material/Button';
 
@@ -27,9 +27,22 @@ export default function CreateMedicinesPage({appUser}) {
     }
     
     return (
-        <Paper elevation={10}  sx={{ margin:3, maxWidth: 600, minHeight:230, backgroundColor: 'black', textAlign: "center"}}>
+        <Box 
+            sx={{
+                width: 650,
+                height: 320,
+                backgroundColor: 'black',
+                margin: 5,
+                textAlign:"center",
+                border: '1px solid orange',
+                '&:hover': {
+                    backgroundColor: 'black',
+                    opacity: [0.9, 0.8, 0.95],
+                    border: '1px solid white'
+                },
+            }}>
             <form id="test" onSubmit={handleSubmit(onSubmit)}>
-                <h2>Add a Medication</h2>
+                <h2 style={{color:'white'}}>Add a Medication</h2>
                 <div>
                     <input type="text" placeholder="Medication Name" {...register("MedicationName", { required: true })} />
                 </div>
@@ -59,6 +72,6 @@ export default function CreateMedicinesPage({appUser}) {
                     <Button variant="contained" color="warning" size="small" type="submit">Submit</Button>
                 </div>
             </form>
-        </Paper>
+        </Box>
     );
 }

@@ -9,7 +9,6 @@ import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";
 import OpenUserRequestsPage from "./pages/requests/OpenUserRequestsPage";
 import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
-import CreatePaymentsPage from "./pages/payments/CreatePaymentsPage";
 import OutstandingPaymentsPage from "./pages/payments/OutstandingPaymentsPage";
 import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
 import LoginPage from "./pages/LoginPage";
@@ -33,8 +32,6 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-
-
       {appUser && 
         <>
           <Route path="/" element={<HomePage />} />
@@ -44,9 +41,8 @@ function App() {
           <Route path="/refills/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
           <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
 
-          <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
-          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
-          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
+          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
+          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
           
         </>
       }

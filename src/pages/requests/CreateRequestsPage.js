@@ -1,7 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import SelectMedicationsMenu from '../../components/SelectMedicationsMenu';
-import API, { getUserById } from '../../util/api';
+import { updateApi } from '../../util/api';
+import { getUserById } from '../../util/api';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 
@@ -10,10 +11,10 @@ export default function CreateRequestsPage({appUser}) {
 
     const onSubmit = async (data) => {
         try{
-            const { username } = appUser;
+            const { username, token } = appUser;
             const userId = await getUserById(username);
-
-            await API.post('requests', {
+            const tokenAPI = updateApi(token);
+            await tokenAPI.post('requests', {
                 dosageCount: data.DosageCount,
                 dosageFreq: data.DosagePerDay,
                 med: {

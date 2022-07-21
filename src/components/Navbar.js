@@ -9,13 +9,10 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import { useEffect, useState } from "react"
 
-<<<<<<< HEAD
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
-const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
-=======
+
 const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
->>>>>>> paymentBranch
+
 
 export default function Navbar({user}){
 

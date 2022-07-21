@@ -32,12 +32,8 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-
-<<<<<<< HEAD
-=======
       <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
       <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
->>>>>>> paymentBranch
 
       {appUser && 
         <>

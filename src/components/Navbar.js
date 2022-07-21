@@ -10,7 +10,7 @@ import Menu from '@mui/material/Menu';
 import { useState } from "react"
 
 
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
+const requestPages = ["Quick Refill", "Your Open Refills", "All Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
 const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
 
@@ -133,34 +133,6 @@ export default function Navbar({user}){
                     </Menu>
                 }
 
-                {/* -----------------------------------------------------------------------------------*/}
-                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
-                {/* -----------------------------------------------------------------------------------*/}
-                <Button
-                    variant="contained"
-                    disableElevation
-                    onClick={handleClick}
-                    endIcon={<KeyboardArrowDownIcon />}
-                    sx={{margin:1}}
-                    color="warning"
-                >
-                    
-                </Button>
-
-                {selectedDropdown === "D" &&
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={open}
-                        onClose={handleClose}
-                    >
-                    {requestPages.map((page) => (
-                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
-                    <Typography textAlign="center">{page}</Typography>
-                    </MenuList>
-                    ))}
-                    
-                    </Menu>
-                }
                     
                 </Toolbar>
                 

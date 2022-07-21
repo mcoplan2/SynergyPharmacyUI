@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"
 import { Button } from '@mui/material';
 import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
-import {useNavigate} from "react-router-dom"
 
 
 export default function ApproveDenyRequestsPage({appUser}) {
@@ -15,7 +14,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
 
     useEffect(() => {
         async function getAllRequests(){   
-            const { username, token } = appUser;
+            const { token } = appUser;
             try {
                 const tokenAPI = updateApi(token);
                 const res = await tokenAPI.get("/requests/type/OPEN")

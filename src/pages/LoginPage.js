@@ -1,8 +1,5 @@
 import LoginForm from "../components/LoginForm";
-import RegistrationComponent from "../components/RegistrationForm";
-import UserCredentialsForm from "../components/UserCredentialsForm";
 import RegistrationForm from "../components/RegistrationForm"
-import { updateApi } from "../util/api";
 import { useState } from "react";
 import {Card, Stack, Tab, Tabs} from "@mui/material";
 

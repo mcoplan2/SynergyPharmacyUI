@@ -7,15 +7,17 @@ import {useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
-const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
+
+const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
+const paymentPages = ["Outstanding Payments", "Payment History"]
+
 
 export default function Navbar({user}){
 
     const [anchorEl, setAnchorEl] = useState(null);
-    const [selectedDropdown, setSelectedDropdown] = useState(null);
+    const [selectedDropdown, setSelectedDropdown] = useState(null); 
 
     const navigate = useNavigate();
     const open = Boolean(anchorEl);
@@ -57,7 +59,7 @@ export default function Navbar({user}){
                     Refills
                 </Button>
 
-                {selectedDropdown == "refills" &&
+                {selectedDropdown === "refills" &&
                     <Menu
                         anchorEl={anchorEl}
                         open={open}
@@ -86,14 +88,14 @@ export default function Navbar({user}){
                     Payments
                 </Button>
 
-                {selectedDropdown == "payments" &&
+                {selectedDropdown === "payments" &&
                     <Menu
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
                     >
                     {paymentPages.map((page) => (
-                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))} >
                     <Typography textAlign="center">{page}</Typography>
                     </MenuList>
                     ))}
@@ -115,19 +117,19 @@ export default function Navbar({user}){
                     ADD IT HERE
                 </Button>
 
-                {selectedDropdown == "B" &&
-                    <Menu
+                {selectedDropdown === "B" &&
+                    <MenuList
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
                     >
                     {requestPages.map((page) => (
-                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <MenuItem key={page} onClick={() => navigate(handleNavClose(page))}>
                     <Typography textAlign="center">{page}</Typography>
-                    </MenuList>
+                    </MenuItem>
                     ))}
                     
-                    </Menu>
+                    </MenuList>
                 }
 
                 {/* -----------------------------------------------------------------------------------*/}
@@ -144,7 +146,7 @@ export default function Navbar({user}){
                     ADD IT HERE
                 </Button>
 
-                {selectedDropdown == "D" &&
+                {selectedDropdown === "D" &&
                     <Menu
                         anchorEl={anchorEl}
                         open={open}

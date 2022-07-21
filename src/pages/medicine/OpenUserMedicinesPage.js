@@ -10,7 +10,7 @@ export default function OpenUserMedicinesPage(){
     useEffect(() => {
         async function getAllMedicines(){   
             try {
-                const res = await API.get("/medicines/1")
+                const res = await API.get("/medicines/user/" +'${userID}')
                 setMedicines(res.data)
             } catch(error) {
                 console.log(error)

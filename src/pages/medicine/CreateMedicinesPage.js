@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Paper from '@mui/material/Paper';
-//import SelectMedicationsMenu from '../components/SelectMedicationsMenu';
 import API from '../../util/api';
 import Button from '@mui/material/Button';
 import { color } from '@mui/system';

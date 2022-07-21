@@ -10,7 +10,7 @@ export default function OpenMedicinesPage(){
     useEffect(() => {
         async function getAllMedicines(){   
             try {
-                const res = await API.get("/medicines/user/1/status/INSTOCK")
+                const res = await API.get("/medicines")
                 setMedicines(res.data)
             } catch(error) {
                 console.log(error)

@@ -7,6 +7,8 @@ import { updateApi, getUserById } from '../util/api';
 export default function Payment({payment, payable, appUser}){
     const [visiableFlashCard, setVisiableFlashCard] = useState(true);
 
+    console.log(payment)
+
     const payPayment = async () => {
         setVisiableFlashCard(false)
 
@@ -61,8 +63,8 @@ export default function Payment({payment, payable, appUser}){
     {visiableFlashCard &&
         <Box 
         sx={{
-            width: 450,
-            height: 235,
+            width: 600,
+            height: 250,
             backgroundColor: 'black',
             margin: 5,
             border: '1px solid orange',
@@ -78,8 +80,13 @@ export default function Payment({payment, payable, appUser}){
             </Typography>
             <hr color="orange"></hr>
             <p></p>
+            {payment.creationDate && 
+                <Typography> 
+                Approved Date:<br/>{Date(payment.creationDate)}<br/>
+                </Typography>
+            }
             <Typography >
-                {payment.medicineId.name} <br/>
+                {payment.medicineId.name}:      
                 ${payment.medicineId.price.toFixed(2)} per dosage <br/>
                 {payment.reqId.dosageCount} doses
             </Typography>
@@ -89,12 +96,15 @@ export default function Payment({payment, payable, appUser}){
                 Total: ${payment.amount.toFixed(2)}
             </Typography>
 
-            {payable &&
+            {payable ?
                 <>
                     <br/>
                     <Button onClick={payPayment}>Confirm</Button>
                     <Button onClick={deletePayment}>Deny</Button>
                 </>
+                :
+                <><br/><Typography>Confirm Date:<br/>{Date(payment.updateDate)}</Typography></>
+
             }
         </Box>
     }

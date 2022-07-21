@@ -26,8 +26,7 @@ export default function Payment({payment}){
         <Typography >
             Amount: ${payment.amount}
         </Typography>
-        <hr color="orange"></hr>
-        <p></p>
+        
     </Box>
   )
 }

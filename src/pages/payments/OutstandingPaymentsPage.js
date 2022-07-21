@@ -10,7 +10,7 @@ export default function OutstandingPaymentsPage(){
         async function getAllPayments(){   
             try {
                 {/* TODO:  decide which user to harass for payment information  */ }
-                const res = await API.get("/payments/userid/0")
+                const res = await API.get("/payments/userid/0/paystatus/UNPAID")
                 setPayments(res.data)
             } catch(error) {
                 console.log(error)
@@ -22,7 +22,7 @@ export default function OutstandingPaymentsPage(){
         console.log(getPayments)
     return <>
         {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.id} payment={payment} />
+            <Payment key={payment.paymentId} payment={payment} />
         )}
 
         {!getPayments && <h3>Loading Payments...</h3>}

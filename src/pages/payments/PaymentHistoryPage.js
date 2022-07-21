@@ -1,6 +1,29 @@
+import { useEffect, useState } from "react"
+import API from '../../util/api';
+import Payment from "../../components/Payment";
 
 export default function PaymentHistoryPage(){
+    const [getPayments, setPayments] = useState('');
+
+    useEffect(() => {
+        async function getAllPayments(){   
+            try {
+                {/* TODO:  decide which user to harass for payment information  */ }
+                const res = await API.get("/payments/userid/0/paystatus/FULLY_PAID")
+                setPayments(res.data)
+            } catch(error) {
+                console.log(error)
+            }
+        }
+        getAllPayments();
+        }, []);
+
+        console.log(getPayments)
     return <>
-        <h1>Hello3</h1>
+        {getPayments && getPayments.map((payment) => 
+            <Payment key={payment.paymentId} payment={payment} />
+        )}
+
+        {!getPayments && <h3>Loading Payments...</h3>}
     </>
 }

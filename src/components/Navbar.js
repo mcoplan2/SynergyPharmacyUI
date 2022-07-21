@@ -7,10 +7,10 @@ import {useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
-const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
+const paymentPages = ["Outstanding Payments", "Payment History"]
 
 export default function Navbar({user}){
 

@@ -15,8 +15,6 @@ export default function LoginForm({updateError, updateAppUser}){
         if(!user) return;
         API.post("/authenticate", user)
             .then((response) => handleData(response.data))
-            // console.log(response.data)
-            // .catch((error) => updateError(error));
     }
 
     async function handleData(data){
@@ -26,14 +24,12 @@ export default function LoginForm({updateError, updateAppUser}){
 
         // Update the appUser to hold the User that is logged in
         updateAppUser(data);
-        
-        }
-
-        navigate("/refills/quickrefill")
-
+        navigate("/")
+    }
 
 
     return <>
         <UserCredentialsForm buttonLabel="Login" updateFunction={updateUser}/>
+        <p></p>
     </>
 }

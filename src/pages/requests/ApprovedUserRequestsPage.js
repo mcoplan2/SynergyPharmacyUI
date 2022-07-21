@@ -23,7 +23,6 @@ export default function ApprovedUserRequestsPage({appUser}){
         getAllRequests();
         }, []);
 
-        console.log(getRequests)
     return <>
         {getRequests && getRequests.map((request) => 
             <Request key={request.id} request={request} />

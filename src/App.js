@@ -29,42 +29,35 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
     <Navbar user={appUser} />
-    {/*
-    {error && 
-      <Error 
-          error={error} 
-          open={!!error} 
-          updateOpen={() => updateError(null)} />}
-    */}
 
     <Routes>
       <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-      <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
-      <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
-      <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
-      <Route path="/refills/allopenrefills" element={<OpenRequestsPage />} />
-      <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
 
-      <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
-      <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
-      <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
 
-      {/*
       {appUser && 
         <>
           <Route path="/" element={<HomePage />} />
-          <Route path="/requests" element={<RequestsPage />} />
+          <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
+
+          <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
+          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
+          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
+          
         </>
       }
-    */}
-      {/*
+
+
       <Route path="/login" element={
         <LoginPage 
           updateError={updateError} 
           updateAppUser={updateAppUser} />
       } />
-      */}
+
     </Routes>
   </ThemeProvider>
   );

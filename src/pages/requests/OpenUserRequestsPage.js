@@ -14,7 +14,6 @@ export default function OpenUserRequestsPage({appUser}){
             const userId = await getUserById(username);
             try {
                 const tokenAPI = updateApi(token);
-                console.log(tokenAPI)
                 const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/OPEN")
                 setRequests(res.data)
             } catch(error) {
@@ -24,12 +23,11 @@ export default function OpenUserRequestsPage({appUser}){
         getAllRequests();
         }, []);
 
-        console.log(getRequests)
     return <>
         {getRequests && getRequests.map((request) => 
             <Request key={request.id} request={request} />
         )}
 
-        {!getRequests && <h3>Loading Requests...</h3>}
+        {!getRequests || getRequests==0 && <h3>Loading Requests...</h3>}
     </>
 }

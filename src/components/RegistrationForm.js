@@ -12,17 +12,6 @@ export default function RegistrationComponent({updateError}){
     // to a child component so that THEY can be the ones to invoke it
     const [user, updateUser] = useState(null);
 
-    let [firstname, updateFirstname] = useState("");
-    let [lastname, updateLastname] = useState("");
-
-    function handleChangeFirstname(event){
-        updateFirstname(event.target.value)
-    }
-
-    function handleChangeLastname(event){
-        updateLastname(event.target.value);
-    }
-
     useEffect(() => register(user), [user]);
 
     function register(user){
@@ -36,8 +25,6 @@ export default function RegistrationComponent({updateError}){
     return (
     <>
         <UserCredentialsForm buttonLabel="Register" updateFunction={updateUser}/>
-        <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstName"/><br/>
-        <input type="text" value={lastname} onChange={handleChangeLastname} placeholder="lastName"/><br/>
     </>
     )
 }

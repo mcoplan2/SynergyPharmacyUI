@@ -7,10 +7,10 @@ import {useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
+const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
 const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
 
@@ -42,7 +42,7 @@ export default function Navbar({user}){
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                <MenuItem onClick={() => navigate("/login")}>
+                <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Synergy Pharm
                     </Typography>

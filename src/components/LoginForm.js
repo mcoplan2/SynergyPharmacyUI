@@ -24,7 +24,7 @@ export default function LoginForm({updateError, updateAppUser}){
 
         // Update the appUser to hold the User that is logged in
         updateAppUser(data);
-        navigate("/")
+        navigate("/home")
     }
 
 

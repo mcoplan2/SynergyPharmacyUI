@@ -41,22 +41,13 @@ function App() {
   */}
 
     <Routes>
-      <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
+      <Route path="/" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-      <Route path="/medicines/addmedicine" element={<CreateMedicinesPage />} />
-      <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage />} />
-      <Route path="/medicines/viewyourmedicine" element={<OpenUserMedicinesPage />} />
-
-      <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
-      <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />
-      <Route path="/refills/yourapprovedrefills" element={<OpenUserRequestsPage />} />
-      <Route path="/refills/allopenrefills" element={<ApprovedUserRequestsPage />} />
-      <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
 
 
       {appUser && 
         <>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage appUser={appUser}/>} />
           <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
           <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
           <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
@@ -65,6 +56,10 @@ function App() {
 
           <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
           <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
+
+          <Route path="/medicines/addmedicine" element={<CreateMedicinesPage appUser={appUser}/>} />
+          <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage appUser={appUser}/>} />
+          <Route path="/medicines/viewyourmedicine" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
           
         </>
       }

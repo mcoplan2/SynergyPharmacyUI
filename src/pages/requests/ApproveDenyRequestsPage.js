@@ -49,6 +49,26 @@ export default function ApproveDenyRequestsPage({appUser}) {
         } catch(error) {
             console.log(error)
         }
+
+
+        try{
+            const tokenAPI = updateApi(token);
+            await tokenAPI.post('payments', {
+                amount: `${dosageCount * med.price}`,
+                medicineId: {
+                    id: med.id
+                },
+                payStatus: "UNPAID",
+                userId:{
+                    userId: creator.userId
+                },
+                reqId:{
+                    id: id
+                },
+            })
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     const onDenySubmit = async (request) => {

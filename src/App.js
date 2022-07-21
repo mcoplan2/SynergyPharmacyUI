@@ -41,8 +41,8 @@ function App() {
           <Route path="/refills/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
           <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
 
-          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>} appUser={appUser}/>
-          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>} appUser={appUser}/>
+          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
+          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
           
         </>
       }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import API from '../../util/api';
+import { updateApi, getUserById } from '../../util/api';
 import Payment from "../../components/Payment";
 
 export default function PaymentHistoryPage({appUser}){
@@ -7,9 +7,11 @@ export default function PaymentHistoryPage({appUser}){
 
     useEffect(() => {
         async function getAllPayments(){   
+            const { username, token } = appUser;
+            const userId = await getUserById(username);
             try {
-                {/* TODO:  decide which user to harass for payment information  */ }
-                const res = await API.get("/payments/userid/0/paystatus/FULLY_PAID")
+                const tokenAPI = updateApi(token);
+                const res = await tokenAPI.get("/payments/userid/" + `${userId}` + "/paystatus/FULLY_PAID")
                 setPayments(res.data)
             } catch(error) {
                 console.log(error)
@@ -18,10 +20,10 @@ export default function PaymentHistoryPage({appUser}){
         getAllPayments();
         }, []);
 
-        console.log(getPayments)
+        //console.log(getPayments)
     return <>
         {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.paymentId} payment={payment} />
+            <Payment key={payment.paymentId} payment={payment} payable={false}/>
         )}
 
         {!getPayments && <h3>Loading Payments...</h3>}

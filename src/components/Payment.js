@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
 
-export default function Payment({payment}){
+export default function Payment({payment, payable}){
     
   return (
     <Box 
@@ -19,14 +19,26 @@ export default function Payment({payment}){
         },
     }}>
         <Typography >
-            {payment.userId.firstName} {payment.userId.lastName}
+            {payment.userId.username}
+        </Typography>
+        <hr color="orange"></hr>
+        <p></p>
+        <Typography >
+            {payment.medicineId.name} <br/>
+            ${payment.medicineId.price} per dosage <br/>
+            {payment.reqId.dosageCount} doses
         </Typography>
         <hr color="orange"></hr>
         <p></p>
         <Typography >
             Amount: ${payment.amount}
         </Typography>
-        
+
+        {payable &&
+            <Typography >
+                Amount: 
+            </Typography>
+        }
     </Box>
   )
 }

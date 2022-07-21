@@ -7,12 +7,12 @@ import {useNavigate} from "react-router-dom"
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
+const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
-
+const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
 
 export default function Navbar({user}){
 
@@ -42,7 +42,7 @@ export default function Navbar({user}){
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                <MenuItem onClick={() => navigate("/login")}>
+                <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Synergy Pharm
                     </Typography>
@@ -104,32 +104,33 @@ export default function Navbar({user}){
                 }       
 
                 {/* -----------------------------------------------------------------------------------*/}
-                {/* ANOTHER BUTTON SECTION FOR WHATEVER, CHANGE requestPages to whatever your pages are*/}
+                {/* Button Section for medicines                                                        */}
                 {/* -----------------------------------------------------------------------------------*/}
+
                 <Button
                     variant="contained"
                     disableElevation
-                    onClick={handleClick}
+                    onClick={(e) => {handleClick(e, "medicines")}}
                     endIcon={<KeyboardArrowDownIcon />}
                     sx={{margin:1}}
                     color="warning"
                 >
-                    ADD IT HERE
+                    Medicines
                 </Button>
 
-                {selectedDropdown === "B" &&
-                    <MenuList
+                {selectedDropdown == "medicines" &&
+                    <Menu
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
                     >
-                    {requestPages.map((page) => (
-                    <MenuItem key={page} onClick={() => navigate(handleNavClose(page))}>
+                    {medicinePages.map((page) => (
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
                     <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
+                    </MenuList>
                     ))}
                     
-                    </MenuList>
+                    </Menu>
                 }
 
                 {/* -----------------------------------------------------------------------------------*/}
@@ -178,14 +179,14 @@ function AuthNavbar(){
                 <Toolbar variant="dense">
                 <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Synergy Pharm
+                    Synergy Pharmacy
                     </Typography>
                 </MenuItem>
                 
-                {requestPages.map((page) => (
-                <MenuList key={page.submenu} onClick={() => navigate(`/${page.toLowerCase()}`)}>
-                  <Typography textAlign="center">{page.title}</Typography>
-                </MenuList>
+                {medicinePages.map((page) => (
+                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
                 ))}
                 </Toolbar>
             </AppBar>

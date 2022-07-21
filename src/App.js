@@ -4,6 +4,9 @@ import Navbar from './components/Navbar'
 import HomePage from "./pages/HomePage";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { useState } from "react";
+import CreateMedicinesPage from "./pages/medicine/CreateMedicinesPage";
+import OpenMedicinesPage from "./pages/medicine/OpenMedicinesPage";
+import OpenUserMedicinesPage from "./pages/medicine/OpenUserMedicinesPage";
 import CreateRequestsPage from "./pages/requests/CreateRequestsPage";
 import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";
@@ -24,17 +27,27 @@ function App() {
 
   const [appUser, updateAppUser] = useState();
   const [error, updateError] = useState(null);
+    
 
   return (
     <ThemeProvider theme={darkTheme}>
     <Navbar user={appUser} />
+    {/*
+      {error && 
+        <Error 
+           error={error} 
+            open={!!error} 
+           updateOpen={() => updateError(null)} />}
+  */}
 
     <Routes>
-      <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
+      <Route path="/" element={<LoginPage updateAppUser={updateAppUser}/>} />
+
+
 
       {appUser && 
         <>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage appUser={appUser}/>} />
           <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
           <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
           <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
@@ -43,6 +56,10 @@ function App() {
 
           <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
           <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
+
+          <Route path="/medicines/addmedicine" element={<CreateMedicinesPage appUser={appUser}/>} />
+          <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage appUser={appUser}/>} />
+          <Route path="/medicines/viewyourmedicine" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
           
         </>
       }
@@ -53,7 +70,7 @@ function App() {
           updateError={updateError} 
           updateAppUser={updateAppUser} />
       } />
-
+      
     </Routes>
   </ThemeProvider>
   );

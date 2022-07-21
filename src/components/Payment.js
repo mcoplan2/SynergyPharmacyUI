@@ -64,7 +64,7 @@ export default function Payment({payment, payable, appUser}){
         <Box 
         sx={{
             width: 600,
-            height: 300,
+            height: 250,
             backgroundColor: 'black',
             margin: 5,
             border: '1px solid orange',

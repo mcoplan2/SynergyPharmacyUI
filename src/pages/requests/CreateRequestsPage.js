@@ -10,10 +10,10 @@ export default function CreateRequestsPage({appUser}) {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
+        const { username, token } = appUser;
+        const userId = await getUserById(username);
+        const tokenAPI = updateApi(token);
         try{
-            const { username, token } = appUser;
-            const userId = await getUserById(username);
-            const tokenAPI = updateApi(token);
             await tokenAPI.post('requests', {
                 dosageCount: data.DosageCount,
                 dosageFreq: data.DosagePerDay,

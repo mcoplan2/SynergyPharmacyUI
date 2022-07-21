@@ -1,8 +1,45 @@
+import { Button } from "@mui/material"
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography"
+import { useEffect, useState } from "react";
+import { updateApi, getUserById } from '../util/api';
 
-export default function Payment({payment, payable}){
+export default function Payment({payment, payable, appUser}){
+    const v = {
+        paymentId: payment.paymentId,
+        amount: payment.amount,
+        medicineId: {
+            id: payment.medicineId.id
+        },
+        payStatus: "FULLY_PAID",
+        userId:{
+            userId: payment.userId.userId
+        },
+        reqId:{
+            id: payment.reqId.id
+        },}
+
+    const payPayment = async () => {
+        const { username, token } = appUser;
+        const userId = await getUserById(username);
+        try{
+            const tokenAPI = updateApi(token);
+
+
+            console.log(v)
+            tokenAPI.post('payments/update', v
+            )
+
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+
     
+
+
+
   return (
     <Box 
     sx={{
@@ -25,19 +62,20 @@ export default function Payment({payment, payable}){
         <p></p>
         <Typography >
             {payment.medicineId.name} <br/>
-            ${payment.medicineId.price} per dosage <br/>
+            ${payment.medicineId.price.toFixed(2)} per dosage <br/>
             {payment.reqId.dosageCount} doses
         </Typography>
         <hr color="orange"></hr>
         <p></p>
         <Typography >
-            Amount: ${payment.amount}
+            Amount: ${payment.amount.toFixed(2)}
         </Typography>
 
         {payable &&
-            <Typography >
-                Amount: 
-            </Typography>
+            <>
+                <br/>
+                <Button onClick={payPayment}>Submit</Button>
+            </>
         }
     </Box>
   )

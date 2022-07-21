@@ -23,10 +23,10 @@ export default function OutstandingPaymentsPage({appUser}){
         getAllPayments();
         }, []);
 
-        console.log(getPayments)
+        //console.log(getPayments)
     return <>
         {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.paymentId} payment={payment} payable={true}/>
+            <Payment key={payment.paymentId} payment={payment} payable={true} appUser={appUser}/>
         )}
 
         {!getPayments && <h3>Loading Payments...</h3>}

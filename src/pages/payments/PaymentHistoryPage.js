@@ -23,7 +23,7 @@ export default function PaymentHistoryPage({appUser}){
         //console.log(getPayments)
     return <>
         {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.paymentId} payment={payment} payable={false}/>
+            <Payment key={payment.paymentId} payment={payment} payable={false} appUser={appUser}/>
         )}
 
         {!getPayments && <h3>Loading Payments...</h3>}

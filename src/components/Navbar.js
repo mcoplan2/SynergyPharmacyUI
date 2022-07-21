@@ -144,7 +144,7 @@ export default function Navbar({user}){
                     sx={{margin:1}}
                     color="warning"
                 >
-                    ADD IT HERE
+                    
                 </Button>
 
                 {selectedDropdown === "D" &&
@@ -161,8 +161,7 @@ export default function Navbar({user}){
                     
                     </Menu>
                 }
-
-
+                    
                 </Toolbar>
                 
             </AppBar>
@@ -189,7 +188,7 @@ function AuthNavbar(){
                 </MenuItem>
                 ))}
                 </Toolbar>
-            </AppBar>
+            </AppBar> 
         </Box>
     )
 }

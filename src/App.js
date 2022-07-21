@@ -9,7 +9,6 @@ import OpenRequestsPage from "./pages/requests/OpenRequestsPage";
 import ApprovedUserRequestsPage from "./pages/requests/ApprovedUserRequestsPage";
 import OpenUserRequestsPage from "./pages/requests/OpenUserRequestsPage";
 import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
-import CreatePaymentsPage from "./pages/payments/CreatePaymentsPage";
 import OutstandingPaymentsPage from "./pages/payments/OutstandingPaymentsPage";
 import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
 import LoginPage from "./pages/LoginPage";
@@ -34,6 +33,11 @@ function App() {
       <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
 
+<<<<<<< HEAD
+=======
+      <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
+      <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
+>>>>>>> paymentBranch
 
       {appUser && 
         <>

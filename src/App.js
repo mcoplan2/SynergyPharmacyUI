@@ -12,6 +12,7 @@ import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
 import CreatePaymentsPage from "./pages/payments/CreatePaymentsPage";
 import OutstandingPaymentsPage from "./pages/payments/OutstandingPaymentsPage";
 import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
+import LoginPage from "./pages/LoginPage";
 
 const darkTheme = createTheme({
   palette: {
@@ -28,42 +29,35 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
     <Navbar user={appUser} />
-    {/*
-    {error && 
-      <Error 
-          error={error} 
-          open={!!error} 
-          updateOpen={() => updateError(null)} />}
-    */}
 
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-      <Route path="/refills/quickrefill" element={<CreateRequestsPage />} />
-      <Route path="/refills/youropenrefills" element={<OpenRequestsPage />} />
-      <Route path="/refills/yourapprovedrefills" element={<OpenUserRequestsPage />} />
-      <Route path="/refills/allopenrefills" element={<ApprovedUserRequestsPage />} />
-      <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
 
-      <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
-      <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
-      <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
 
-      {/*
       {appUser && 
         <>
           <Route path="/" element={<HomePage />} />
-          <Route path="/requests" element={<RequestsPage />} />
+          <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
+          <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
+
+          <Route path="/payments/quickpay" element={<CreatePaymentsPage />}/>
+          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage/>}/>
+          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage/>}/>
+          
         </>
       }
-    */}
-      {/*
+
+
       <Route path="/login" element={
         <LoginPage 
           updateError={updateError} 
           updateAppUser={updateAppUser} />
       } />
-      */}
+
     </Routes>
   </ThemeProvider>
   );

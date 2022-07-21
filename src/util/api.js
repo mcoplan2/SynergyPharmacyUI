@@ -11,11 +11,22 @@ let API = axios.create({
 export function updateApi(token){
     API = axios.create({
         baseURL: BASE_API_URL,
-        timeout: 1000,
+        timeout: 10000,
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
+    return API;
+}
+
+export async function getUserById(username) {
+        try {
+            const res = await API.get("/users/username/"+`${username}`)
+            const {userId} = res.data
+            return userId;
+        } catch(error) {
+            console.log(error)
+        }   
 }
 
 export default API;

@@ -43,7 +43,6 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
-<<<<<<< HEAD
       <Route path="/medicines/addmedicine" element={<CreateMedicinesPage />} />
       <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage />} />
       <Route path="/medicines/viewyourmedicine" element={<OpenUserMedicinesPage />} />
@@ -55,8 +54,6 @@ function App() {
       <Route path="/refills/admin" element={<ApproveDenyRequestsPage />} />
 
 
-=======
->>>>>>> 8572a6bc4abc9e4572270df1f2f7d11887579ae9
       {appUser && 
         <>
           <Route path="/" element={<HomePage />} />

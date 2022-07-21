@@ -12,13 +12,7 @@ import { useEffect, useState } from "react"
 
 const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Open Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
-
-<<<<<<< HEAD
-const requestPages = ["Quick Refill", "Your Open Refills", "Your Approved Refills", "All Refills", "Admin"]
-const paymentPages = ["Quick Pay", "Outstanding Payments", "Payment History"]
 const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
-=======
->>>>>>> 8572a6bc4abc9e4572270df1f2f7d11887579ae9
 
 export default function Navbar({user}){
 
@@ -124,29 +118,19 @@ export default function Navbar({user}){
                     Medicines
                 </Button>
 
-<<<<<<< HEAD
                 {selectedDropdown == "medicines" &&
                     <Menu
-=======
-                {selectedDropdown === "B" &&
-                    <MenuList
->>>>>>> 8572a6bc4abc9e4572270df1f2f7d11887579ae9
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
                     >
-<<<<<<< HEAD
                     {medicinePages.map((page) => (
                     <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
-=======
-                    {requestPages.map((page) => (
-                    <MenuItem key={page} onClick={() => navigate(handleNavClose(page))}>
->>>>>>> 8572a6bc4abc9e4572270df1f2f7d11887579ae9
                     <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
+                    </MenuList>
                     ))}
                     
-                    </MenuList>
+                    </Menu>
                 }
 
                 {/* -----------------------------------------------------------------------------------*/}

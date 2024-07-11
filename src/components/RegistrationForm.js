@@ -9,7 +9,7 @@ export default function RegistrationComponent({updateError}){
     //      We could use props -> updateAuthUser
 
     // Lifting State -> the process of passing a reference of a stateUpdateFunction
-    // to a child component so that THEY can be the ones to invoke it
+    // to a child component so that THEY can be the ones to invoke itd
     const [user, updateUser] = useState(null);
 
     useEffect(() => register(user), [user]);

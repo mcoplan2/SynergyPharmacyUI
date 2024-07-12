@@ -18,10 +18,20 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
 
     let [username, updateUsername] = useState("");
     let [password, updatePassword] = useState("");
+    let [firstname, updateFirstname] = useState("");
+    let [lastname, updateLastname] = useState("");
 
 
     function handleChangeUsername(event){
         updateUsername(event.target.value)
+    }
+
+    function handleChangeFirstname(event){
+        updateFirstname(event.target.value)
+    }
+
+    function handleChangeLastname(event){
+        updateLastname(event.target.value)
     }
 
     function handleChangePassword(event){
@@ -34,6 +44,8 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
 
         let user = {
             username: username,
+            firstName: firstname,
+            lastName: lastname,
             password: password,
         }
 
@@ -41,6 +53,8 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     }
 
     return <>
+        <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstname"/><br/>
+        <input type="text" value={lastname} onChange={handleChangeLastname} placeholder="lastname"/><br/>
         <input type="text" value={username} onChange={handleChangeUsername} placeholder="username"/><br/>
         <input type="password" value={password} onChange={handleChangePassword} placeholder="password"/><br/>
         <button onClick={submit}>{buttonLabel}</button>

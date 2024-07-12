@@ -8,13 +8,27 @@ import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Menu from '@mui/material/Menu';
 import { useState } from "react"
+import LoginPage from '../pages/LoginPage';
+import App from '../App';
+
 
 
 const requestPages = ["Quick Refill", "Your Open Refills", "All Refills", "Admin"]
 const paymentPages = ["Outstanding Payments", "Payment History"]
 const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
 
-export default function Navbar({user}){
+export default function Navbar(appUser){
+    
+
+    const username = appUser?.user?.username ?? '';
+    console.log(username)
+
+    const handleLogout = () => {
+        // Perform logout actions here
+        window.location.href="/" // Redirect to login page after logout
+        
+      };
+
 
     const [anchorEl, setAnchorEl] = useState(null);
     const [selectedDropdown, setSelectedDropdown] = useState(null); 
@@ -39,6 +53,7 @@ export default function Navbar({user}){
     };
 
     return (
+        
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
@@ -132,8 +147,19 @@ export default function Navbar({user}){
                     
                     </Menu>
                 }
+                
+                <MenuItem onClick={() => navigate("/")}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                    {username ? `${username}` : ''}
+                    </Typography>
+                </MenuItem>    
 
-                    
+                <MenuItem onClick={handleLogout}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                    {username ? 'Logout' : ''}
+                    </Typography>
+                </MenuItem>    
+                
                 </Toolbar>
                 
             </AppBar>

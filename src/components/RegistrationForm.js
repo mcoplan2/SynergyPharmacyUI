@@ -22,6 +22,7 @@ export default function RegistrationComponent({updateError}){
             .catch((error) => updateError(error));
     }
 
+
     return (
     <>
         <UserCredentialsForm buttonLabel="Register" updateFunction={updateUser}/>

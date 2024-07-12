@@ -24,20 +24,12 @@ const darkTheme = createTheme({
 
 function App() {
 
-  const [appUser, updateAppUser] = useState();
+  const [appUser, updateAppUser] = useState(null);
   const [error, updateError] = useState(null);
-    
 
   return (
     <ThemeProvider theme={darkTheme}>
     <Navbar user={appUser} />
-    {/*
-      {error && 
-        <Error 
-           error={error} 
-            open={!!error} 
-           updateOpen={() => updateError(null)} />}
-  */}
 
     <Routes>
       <Route path="/" element={<LoginPage updateAppUser={updateAppUser}/>} />

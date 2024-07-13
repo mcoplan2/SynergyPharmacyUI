@@ -13,7 +13,9 @@ import OpenUserRequestsPage from "./pages/requests/OpenUserRequestsPage";
 import ApproveDenyRequestsPage from "./pages/requests/ApproveDenyRequestsPage";
 import OutstandingPaymentsPage from "./pages/payments/OutstandingPaymentsPage";
 import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
+import AllPaymentsPage from "./pages/payments/AllPaymentsPage";
 import LoginPage from "./pages/LoginPage";
+import Footer from "./components/Footer";
 
 const darkTheme = createTheme({
   palette: {
@@ -42,13 +44,14 @@ function App() {
           <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
           <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
           <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
-          <Route path="/refills/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
-          <Route path="/refills/admin" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
+          <Route path="/admin/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
+          <Route path="/admin/pendingrefills" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
 
-          <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
-          <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
+          <Route path="/payments/youroutstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
+          <Route path="/payments/yourpaymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
+          <Route path="/admin/allpayments" element={<AllPaymentsPage appUser={appUser}/>} />
 
-          <Route path="/medicines/addmedicine" element={<CreateMedicinesPage appUser={appUser}/>} />
+          <Route path="/admin/addmedication" element={<CreateMedicinesPage appUser={appUser}/>} />
           <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage appUser={appUser}/>} />
           <Route path="/medicines/viewyourmedicine" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
           
@@ -63,6 +66,7 @@ function App() {
       } />
       
     </Routes>
+    <Footer/>
   </ThemeProvider>
   );
 }

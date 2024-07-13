@@ -2,10 +2,7 @@ import { useEffect, useState } from "react"
 import { updateApi, getUserById } from '../../util/api';
 import Payment from "../../components/Payment";
 
-
-
-
-export default function OutstandingPaymentsPage({appUser}){
+export default function PaymentHistoryPage({appUser}){
     const [getPayments, setPayments] = useState('');
 
     useEffect(() => {
@@ -14,7 +11,7 @@ export default function OutstandingPaymentsPage({appUser}){
             const userId = await getUserById(username);
             try {
                 const tokenAPI = updateApi(token);
-                const res = await tokenAPI.get("/payments/userid/"+`${userId}` + "/paystatus/UNPAID")
+                const res = await tokenAPI.get("/payments/paystatus/FULLY_PAID")
                 setPayments(res.data)
             } catch(error) {
                 console.log(error)
@@ -26,9 +23,9 @@ export default function OutstandingPaymentsPage({appUser}){
         //console.log(getPayments)
     return <>
         {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.paymentId} payment={payment} payable={true} appUser={appUser}/>
+            <Payment key={payment.paymentId} payment={payment} payable={false} appUser={appUser}/>
         )}
 
-        {!getPayments || getPayments ==0 && <h3>No Payments due at this time</h3>}
+        {!getPayments && <h3>Loading Payments...</h3>}
     </>
 }

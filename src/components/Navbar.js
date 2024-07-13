@@ -13,14 +13,16 @@ import App from '../App';
 
 
 
-const requestPages = ["Quick Refill", "Your Open Refills", "All Refills", "Admin"]
-const paymentPages = ["Outstanding Payments", "Payment History"]
-const medicinePages = ["Add Medicine", "View All Medicine", "View Your Medicine"]
+const requestPages = ["Quick Refill", "Your Open Refills"]
+const paymentPages = ["Your Outstanding Payments", "Your Payment History"]
+const medicinePages = ["View All Medicine", "View Your Medicine"]
+const adminPages = ["All Refills", "All Payments", "Add Medication", "Pending Refills"]
 
 export default function Navbar(appUser){
     
 
     const username = appUser?.user?.username ?? '';
+    const role = appUser?.user?.role ?? '';
     console.log(username)
 
     const handleLogout = () => {
@@ -130,7 +132,7 @@ export default function Navbar(appUser){
                     sx={{margin:1}}
                     color="warning"
                 >
-                    Medicines
+                    Medication
                 </Button>
 
                 {selectedDropdown == "medicines" &&
@@ -147,6 +149,37 @@ export default function Navbar(appUser){
                     
                     </Menu>
                 }
+
+                {/* -----------------------------------------------------------------------------------*/}
+                {/* Button Section for admins                                                        */}
+                {/* -----------------------------------------------------------------------------------*/}
+            { role == 'EMPLOYEE' &&  
+                <Button
+                    variant="contained"
+                    disableElevation
+                    onClick={(e) => {handleClick(e, "admin")}}
+                    endIcon={<KeyboardArrowDownIcon />}
+                    sx={{margin:1}}
+                    color="error"
+                >
+                    Admin
+                </Button>
+}
+                {selectedDropdown == "admin" &&
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                    >
+                    {adminPages.map((page) => (
+                    <MenuList key={page} onClick={() => navigate(handleNavClose(page))}>
+                    <Typography textAlign="center">{page}</Typography>
+                    </MenuList>
+                    ))}
+                    
+                    </Menu>
+                }
+            
                 
                 <MenuItem onClick={() => navigate("/")}>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
@@ -158,7 +191,8 @@ export default function Navbar(appUser){
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                     {username ? 'Logout' : ''}
                     </Typography>
-                </MenuItem>    
+                </MenuItem>
+
                 
                 </Toolbar>
                 

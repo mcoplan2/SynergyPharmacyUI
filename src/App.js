@@ -19,6 +19,10 @@ import Footer from "./components/Footer";
 
 const darkTheme = createTheme({
   palette: {
+    background: {
+      default: '#121212',
+      paper: '#121212'
+    },
     mode: 'dark'
   },
 });
@@ -31,6 +35,8 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <div style={styles.wrapper}>
+      <div style={styles.content}>
     <Navbar user={appUser} />
 
     <Routes>
@@ -66,9 +72,24 @@ function App() {
       } />
       
     </Routes>
+    </div>
     <Footer/>
+    </div>
   </ThemeProvider>
   );
-}
+};
+
+const styles = {
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    background: '#808080',
+  },
+  content: {
+    flex: 1,
+    padding: '5px',
+  }
+};
 
 export default App;

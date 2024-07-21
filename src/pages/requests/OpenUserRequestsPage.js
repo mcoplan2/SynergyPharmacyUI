@@ -28,6 +28,6 @@ export default function OpenUserRequestsPage({appUser}){
             <Request key={request.id} request={request} />
         )}
 
-        {!getRequests || getRequests==0 && <h3>Loading Requests...</h3>}
+        {!getRequests || getRequests==0 && <h3>No open refills at this time.</h3>}
     </>
 }

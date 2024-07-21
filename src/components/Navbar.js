@@ -59,12 +59,12 @@ export default function Navbar(appUser){
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                <MenuItem onClick={() => navigate("/")}>
+                <MenuItem onClick={() => navigate("/home")}>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Synergy Pharm
                     </Typography>
                 </MenuItem>
-                
+                { (role == 'EMPLOYEE' || role == 'CUSTOMER') &&
                 <Button
                     variant="contained"
                     disableElevation
@@ -75,6 +75,8 @@ export default function Navbar(appUser){
                 >
                     Refills
                 </Button>
+                }
+                
 
                 {selectedDropdown === "refills" &&
                     <Menu
@@ -94,6 +96,7 @@ export default function Navbar(appUser){
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* Button Section for payments                                                        */}
                 {/* -----------------------------------------------------------------------------------*/}
+                { (role == 'EMPLOYEE' || role == 'CUSTOMER') &&
                 <Button
                     variant="contained"
                     disableElevation
@@ -104,6 +107,7 @@ export default function Navbar(appUser){
                 >
                     Payments
                 </Button>
+                }
 
                 {selectedDropdown === "payments" &&
                     <Menu
@@ -123,17 +127,18 @@ export default function Navbar(appUser){
                 {/* -----------------------------------------------------------------------------------*/}
                 {/* Button Section for medicines                                                        */}
                 {/* -----------------------------------------------------------------------------------*/}
-
+                { (role == 'EMPLOYEE' || role == 'CUSTOMER') &&
                 <Button
                     variant="contained"
                     disableElevation
                     onClick={(e) => {handleClick(e, "medicines")}}
                     endIcon={<KeyboardArrowDownIcon />}
-                    sx={{margin:1}}
+                    sx={{margin:1, }}
                     color="warning"
                 >
                     Medication
                 </Button>
+                }
 
                 {selectedDropdown == "medicines" &&
                     <Menu
@@ -164,7 +169,7 @@ export default function Navbar(appUser){
                 >
                     Admin
                 </Button>
-}
+            }
                 {selectedDropdown == "admin" &&
                     <Menu
                         anchorEl={anchorEl}
@@ -181,15 +186,15 @@ export default function Navbar(appUser){
                 }
             
                 
-                <MenuItem onClick={() => navigate("/")}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                <MenuItem onClick={() => navigate("/")} sx={{ marginLeft: 'auto'  }}>
+                    <Typography variant="h5" component="div" sx={{ marginLeft: 'auto'  }}>
                     {username ? `${username}` : ''}
                     </Typography>
                 </MenuItem>    
 
                 <MenuItem onClick={handleLogout}>
-                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                    {username ? 'Logout' : ''}
+                    <Typography variant="h5" component="div" sx={{ marginLeft: '200' }}>
+                    {username ? 'Logout' : 'Login'}
                     </Typography>
                 </MenuItem>
 

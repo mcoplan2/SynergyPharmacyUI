@@ -5,12 +5,14 @@ import { useEffect, useState } from "react"
 import { Button } from '@mui/material';
 import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
+import {useNavigate} from "react-router-dom"
 
 
 export default function ApproveDenyRequestsPage({appUser}) {
 
     const [selectedRows, setSelectedRows] = useState([]);
     const [getRequests, setRequests] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function getAllRequests(){   
@@ -52,22 +54,26 @@ export default function ApproveDenyRequestsPage({appUser}) {
 
         try{
             const tokenAPI = updateApi(token);
-            await tokenAPI.post('payments', {
+            const payload = {
                 amount: `${dosageCount * med.price}`,
                 medicineId: {
                     id: med.id
                 },
                 payStatus: "UNPAID",
-                userId:{
+                userId: {
                     userId: creator.userId
                 },
-                reqId:{
+                reqId: {
                     id: id
-                },
-            })
+                }
+            };
+            const res = await tokenAPI.post('payments', payload);
+            console.log("PAYMENT HERE")
+            console.log(res.data)
         } catch(error) {
             console.log(error)
         }
+        navigate("/home")
     }
 
     const onDenySubmit = async (request) => {

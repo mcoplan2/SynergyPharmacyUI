@@ -64,8 +64,10 @@ export default function HomePage({appUser}){
     return <>
         <Box 
     sx={{
-        width: 600,
-        height: 400,
+        minWidth: 300,
+        maxWidth: 600,
+        minHeight: 200,
+        maxHeight: 'auto',
         backgroundColor: 'black',
         margin: 5,
         border: '1px solid orange',

@@ -5,9 +5,11 @@ import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
+import {useNavigate} from "react-router-dom"
 
 export default function CreateRequestsPage({appUser}) {
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         const { username, token } = appUser;
@@ -28,6 +30,7 @@ export default function CreateRequestsPage({appUser}) {
         } catch(error) {
             console.log(error)
         }
+        navigate("/home")
     }
 
     return (

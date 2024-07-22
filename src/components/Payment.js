@@ -7,7 +7,9 @@ import { updateApi, getUserById } from '../util/api';
 export default function Payment({payment, payable, appUser}){
     const [visiableFlashCard, setVisiableFlashCard] = useState(true);
 
-    console.log(payment)
+    console.log("HELLO!!!!!!!!!!!!!!!!!!!!!")
+    console.log(payment.updateDate)
+    console.log(payment.creationDate)
 
     const payPayment = async () => {
         setVisiableFlashCard(false)
@@ -82,7 +84,7 @@ export default function Payment({payment, payable, appUser}){
             <p></p>
             {payment.creationDate && 
                 <Typography> 
-                Approved Date:<br/>{Date(payment.creationDate)}<br/>
+                Approved Date:  {payment.creationDate}
                 </Typography>
             }
             <Typography >
@@ -103,7 +105,7 @@ export default function Payment({payment, payable, appUser}){
                     <Button onClick={deletePayment}>Deny</Button>
                 </>
                 :
-                <><br/><Typography>Confirm Date:<br/>{Date(payment.updateDate)}</Typography></>
+                <><br/><Typography>Confirm Date:  {payment.updateDate}</Typography></>
 
             }
         </Box>

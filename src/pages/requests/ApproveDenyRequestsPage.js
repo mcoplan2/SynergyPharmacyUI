@@ -154,23 +154,27 @@ export default function ApproveDenyRequestsPage({appUser}) {
     
   return (
     <Box sx={{
-        width: 900,
+        width: 'auto',
         height: 420,
-        backgroundColor: 'black',
+        backgroundColor: '#272727',
         margin: 15,
         padding: 2,
         paddingBottom: 15,
         textAlign:"center",
         border: '1px solid orange',
-        '&:hover': {
+    }}>
+        <h4 style={{color:'orange'}}>Refill Admin Panel</h4>
+      <DataGrid
+        sx={{
+            backgroundColor:'#272727',
+            border: '1px solid orange',
+            '&:hover': {
             backgroundColor: 'black',
             opacity: [0.9, 0.8, 0.95],
-            border: '1px solid orange'
-        },
-    }}>
-        <h4 style={{color:'white'}}>Refill Admin Panel</h4>
-      <DataGrid
-        sx={{backgroundColor:'black'}}
+            border: '1px solid white'
+            }
+        
+        }}
         rows={getRequests}
         columns={columns}
         pageSize={10}

@@ -38,7 +38,7 @@ export default function CreateRequestsPage({appUser}) {
             sx={{
                 width: 650,
                 height: 420,
-                backgroundColor: 'black',
+                backgroundColor: '#272727',
                 margin: 5,
                 textAlign:"center",
                 border: '1px solid orange',

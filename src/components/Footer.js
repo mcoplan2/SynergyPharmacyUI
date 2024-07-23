@@ -8,7 +8,7 @@ const Footer = () => {
 
 const styles = {
     footer: {
-        backgroundColor: '#333',
+        backgroundColor: '#272727',
         color: '#fff',
         textAlign: 'center',
         marginTop: 'auto',  // Pushes the footer to the bottom of the page

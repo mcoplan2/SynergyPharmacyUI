@@ -16,6 +16,7 @@ import PaymentHistoryPage from "./pages/payments/PaymentHistoryPage";
 import AllPaymentsPage from "./pages/payments/AllPaymentsPage";
 import LoginPage from "./pages/LoginPage";
 import Footer from "./components/Footer";
+import EditProfilePage from "./pages/users/EditProfilePage";
 
 const darkTheme = createTheme({
   palette: {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
           <Route path="/admin/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
           <Route path="/admin/pendingrefills" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
+          <Route path="/user/editprofile" element={<EditProfilePage appUser={appUser}/>} />
 
           <Route path="/payments/youroutstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
           <Route path="/payments/yourpaymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />

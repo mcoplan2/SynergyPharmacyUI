@@ -186,7 +186,7 @@ export default function Navbar(appUser){
                 }
             
                 
-                <MenuItem onClick={() => navigate("/")} sx={{ marginLeft: 'auto'  }}>
+                <MenuItem onClick={() => navigate("user/editprofile")} sx={{ marginLeft: 'auto'  }}>
                     <Typography variant="h5" component="div" sx={{ marginLeft: 'auto'  }}>
                     {username ? `${username}` : ''}
                     </Typography>

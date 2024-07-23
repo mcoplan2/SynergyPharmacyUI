@@ -1,17 +1,13 @@
-import LoginForm from "../components/LoginForm";
-import RegistrationForm from "../components/RegistrationForm"
+import LoginForm from "../../components/LoginForm";
+import RegistrationForm from "../../components/RegistrationForm";
 import { useState } from "react";
 import {Card, Stack, Tab, Tabs} from "@mui/material";
-
-export default function LoginPage({updateError, updateAppUser}){
-
-    const [selectedTab, updateSelectedTab] = useState(0);
+import EditProfile from "../../components/EditProfile";
 
 
-    function handleChange(event, newValue){
-        updateSelectedTab(newValue);
-    }
-
+export default function EditProfilePage({updateError, appUser}){
+    console.log("TEST??")
+    console.log(appUser)
 
     return <>
         <Stack container={"true"} direction={"column"} alignItems={"center"} justifyContent={"center"} paddingTop={10}>
@@ -31,9 +27,8 @@ export default function LoginPage({updateError, updateAppUser}){
             },
                     
                     }}>
-                <Tabs 
-                    value={selectedTab} 
-                    onChange={handleChange} 
+                <Tabs
+                    value={0} 
                     sx={{
                         width: '100%',
                         '& .MuiTab-root': { 
@@ -49,16 +44,13 @@ export default function LoginPage({updateError, updateAppUser}){
                     textColor="orange" 
                     indicatorColor="orange" 
                     variant="fullWidth" 
-                    aria-label={"login/registration tab selection"}>
-                        <Tab label={"Login"} />
-                        <Tab label={"Register"} />
-                    </Tabs>
-                    <TabPanel value={selectedTab} index={0}>
-                        <LoginForm updateError={updateError} updateAppUser={updateAppUser}/>
-                    </TabPanel>
-                    <TabPanel value={selectedTab} index={1}>
-                        <RegistrationForm updateError={updateError}/>
-                    </TabPanel>
+                    aria-label={"Edit Profile"}>
+                        
+                        <Tab label="Edit Profile" />
+                </Tabs>
+                <TabPanel value={0} index={0}>
+                    <EditProfile updateError={updateError} appUser={appUser}/>
+                </TabPanel>
                 </Card>
             </Stack>
         </Stack>

@@ -41,22 +41,27 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     function submit(){
         // TODO: combine the username/password into an object,
         // and lift the object back to the parent component
-
         let user = {
             username: username,
             firstName: firstname,
             lastName: lastname,
             password: password,
         }
-
+        console.log("USER")
+        console.log(user)
         updateFunction(user)
     }
 
     return <>
         <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstname"/><br/>
+        <p></p>
         <input type="text" value={lastname} onChange={handleChangeLastname} placeholder="lastname"/><br/>
+        <p></p>
         <input type="text" value={username} onChange={handleChangeUsername} placeholder="username"/><br/>
+        <p></p>
         <input type="password" value={password} onChange={handleChangePassword} placeholder="password"/><br/>
+        <p></p>
         <button onClick={submit}>{buttonLabel}</button>
+        <p></p>
     </>
 }

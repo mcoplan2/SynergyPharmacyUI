@@ -67,7 +67,7 @@ export default function Payment({payment, payable, appUser}){
         sx={{
             width: 600,
             height: 270,
-            backgroundColor: 'black',
+            backgroundColor: '#272727',
             margin: 5,
             border: '1px solid orange',
             color: "#FFFFFF",

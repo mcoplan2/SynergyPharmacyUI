@@ -10,7 +10,7 @@ export default function Request({request}) {
     sx={{
         width: 450,
         height: 235,
-        backgroundColor: 'black',
+        backgroundColor: '#272727',
         margin: 5,
         border: '1px solid orange',
         color: "#FFFFFF",

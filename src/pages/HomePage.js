@@ -68,6 +68,7 @@ export default function HomePage({appUser}){
         maxWidth: 600,
         minHeight: 200,
         maxHeight: 'auto',
+        padding: 2,
         backgroundColor: '#272727',
         margin: 5,
         border: '1px solid orange',

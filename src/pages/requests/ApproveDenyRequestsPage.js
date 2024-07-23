@@ -2,17 +2,22 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react"
-import { Button } from '@mui/material';
+import { Button, Modal, Typography } from '@mui/material';
 import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
 import {useNavigate} from "react-router-dom"
+import ErrorModal from '../../components/ErrorModal';
 
 
 export default function ApproveDenyRequestsPage({appUser}) {
 
+    const [open, setOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [selectedRows, setSelectedRows] = useState([]);
     const [getRequests, setRequests] = useState('');
     const navigate = useNavigate();
+
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         async function getAllRequests(){   
@@ -30,6 +35,10 @@ export default function ApproveDenyRequestsPage({appUser}) {
 
     const onApproveSubmit = async (request) => {
         // Deconstruct the array of objects
+        if(!request[0]){
+            setErrorMessage("Please select a refill");
+            setOpen(true);
+        }
         const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
         const { username, token } = appUser;
         const userId = await getUserById(username);
@@ -48,8 +57,10 @@ export default function ApproveDenyRequestsPage({appUser}) {
                 },
             })
         } catch(error) {
-            console.log(error)
+            setErrorMessage(error.message);
+            setOpen(true);
         }
+        
 
 
         try{
@@ -71,12 +82,18 @@ export default function ApproveDenyRequestsPage({appUser}) {
             console.log("PAYMENT HERE")
             console.log(res.data)
         } catch(error) {
-            console.log(error)
+            setErrorMessage(error.message);
+            setOpen(true);
         }
         navigate("/home")
     }
 
     const onDenySubmit = async (request) => {
+
+        if(!request[0]){
+            setErrorMessage("Please select a refill");
+            setOpen(true);
+        }
         // Deconstruct the array of objects
         const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
         const { username, token } = appUser;
@@ -96,7 +113,8 @@ export default function ApproveDenyRequestsPage({appUser}) {
                 },
             })
         } catch(error) {
-            console.log(error)
+            setErrorMessage(error.message);
+            setOpen(true);
         }
     }
 
@@ -157,7 +175,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
         width: 'auto',
         height: 420,
         backgroundColor: '#272727',
-        margin: 15,
+        margin: 5,
         padding: 2,
         paddingBottom: 15,
         textAlign:"center",
@@ -192,8 +210,11 @@ export default function ApproveDenyRequestsPage({appUser}) {
       />
       <Button color="success" variant="outlined"
         onClick={() => onApproveSubmit(selectedRows)} sx={{backgroundColor:'black', margin:2}}>Approve</Button>
-      
+
+        <ErrorModal open={open}handleClose={handleClose} errorMessage={errorMessage}/>
+    
       <Button color="error" variant="outlined" onClick={() => onDenySubmit(selectedRows)} sx={{backgroundColor:'black'}}>Deny</Button>
     </Box>
+    
   );
 }

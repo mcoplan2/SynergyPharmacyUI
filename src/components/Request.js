@@ -12,6 +12,7 @@ export default function Request({request}) {
         height: 235,
         backgroundColor: '#272727',
         margin: 5,
+        padding: 2,
         border: '1px solid orange',
         color: "#FFFFFF",
         '&:hover': {

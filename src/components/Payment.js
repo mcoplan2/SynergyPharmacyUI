@@ -69,6 +69,7 @@ export default function Payment({payment, payable, appUser}){
             height: 270,
             backgroundColor: '#272727',
             margin: 5,
+            padding: 2,
             border: '1px solid orange',
             color: "#FFFFFF",
             '&:hover': {

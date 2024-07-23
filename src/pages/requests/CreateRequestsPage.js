@@ -6,9 +6,14 @@ import { getUserById } from '../../util/api';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom"
+import { useEffect, useState } from "react"
+import ErrorModal from '../../components/ErrorModal';
 
 export default function CreateRequestsPage({appUser}) {
+
     const { register, handleSubmit } = useForm();
+    const [open, setOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
@@ -33,6 +38,17 @@ export default function CreateRequestsPage({appUser}) {
         navigate("/home")
     }
 
+    const onError = (errors) => {
+        // Extract error message
+        const errorKeys = Object.keys(errors);
+        if (errorKeys.length > 0) {
+            setErrorMessage(`Please fill out the required fields: ${errorKeys.join(', ')}`);
+            setOpen(true);
+        }
+    };
+
+    const handleClose = () => setOpen(false);
+
     return (
         <Box 
             sx={{
@@ -40,6 +56,7 @@ export default function CreateRequestsPage({appUser}) {
                 height: 420,
                 backgroundColor: '#272727',
                 margin: 5,
+                padding: 2,
                 textAlign:"center",
                 border: '1px solid orange',
                 '&:hover': {
@@ -48,7 +65,7 @@ export default function CreateRequestsPage({appUser}) {
                     border: '1px solid white'
                 },
             }}>
-            <form id="test" onSubmit={handleSubmit(onSubmit)}>
+            <form id="test" onSubmit={handleSubmit(onSubmit, onError)}>
                 <h1 style={{color:'white'}}>Refill Request: </h1>
                 <hr color="orange"></hr>
                 <div>
@@ -69,6 +86,7 @@ export default function CreateRequestsPage({appUser}) {
                 <hr color="orange"></hr>
                 <Button variant="contained" color="warning" size="large" type="submit">Submit</Button>
             </form>
+            <ErrorModal open={open}handleClose={handleClose} errorMessage={errorMessage} />
         </Box>
         
     );

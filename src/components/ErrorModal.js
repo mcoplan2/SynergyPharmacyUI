@@ -31,7 +31,7 @@ const ErrorModal = ({ open, handleClose, errorMessage }) => {
                     <Typography id="error-modal-title" variant="h4" component="h2" sx={{ color: '#ff0000' }}>
                         Error:
                     </Typography>
-                    <Typography id="error-modal-description" sx={{ mt: 2, color: '#FFFFFF' }}>
+                    <Typography id="error-modal-description" sx={{ mt: 2, color: '#FFFFFF',whiteSpace: 'pre-line' }}>
                         {errorMessage}
                     </Typography>
                     <Button 

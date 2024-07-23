@@ -36,8 +36,17 @@ export default function CreateMedicinesPage({appUser}) {
     const onError = (errors) => {
         // Extract error message
         const errorKeys = Object.keys(errors);
-        if (errorKeys.length > 0) {
-            setErrorMessage(`Please fill out the required fields: ${errorKeys.join(', ')}`);
+        const errorDetails = Object.entries(errors).map(([key, value]) => {
+            return { 
+              field: key,
+              type: value.type,
+              message: value.message
+            };
+          });
+        if (errorDetails.length > 0) {
+            const formattedErrors = errorDetails.map(error => `${error.field}: ${error.message}`).join(`\n`);
+            console.log(formattedErrors)
+            setErrorMessage(formattedErrors);
             setOpen(true);
         }
     };
@@ -63,20 +72,46 @@ export default function CreateMedicinesPage({appUser}) {
                     border: '1px solid white'
                 },
             }}>
+                <div dangerouslySetInnerHTML={{ __html: errorMessage }} />
             <form id="test" onSubmit={handleSubmit(onSubmit, onError)}>
                 <h1 style={{color:'white'}}>Add a Medication: </h1>
                 <hr color="orange"></hr>
                 <div>
                 <h3 style={{color:'white'}}>Medication Name: </h3>
-                    <input type="text" placeholder="Medication Name" {...register("MedicationName", { required: true })} />
+                    <input type="text" placeholder="Medication Name" 
+                    {...register("MedicationName", { 
+                        required: "This is required.",
+                        pattern: {
+                            value: /^[A-Za-z- ]+$/, // Only letters, hyphens, and spaces
+                            message: 'This input is letters, hyphens, and spaces only.',
+                          },
+                        
+                    })} 
+                    />
                 </div>
                 <div>
                 <h3 style={{color:'white'}}>Enter Total Amount: </h3>
-                    <input type="text" placeholder="Amount In Stock" {...register("AmountInStock", { required: true })} />
+                    <input type="text" placeholder="Amount In Stock" 
+                    {...register("AmountInStock", { 
+                        required: "This is required.",
+                        pattern: {
+                            value: /d+/,
+                            message: "This input is number only."
+                          },
+                    })} 
+                    />
                 </div>
                 <div>
                 <h3 style={{color:'white'}}>Enter Price Per Unit: </h3>
-                    <input type="text" placeholder="Price Per Unit" {...register("PricePerUnit", {required: true})} />
+                    <input type="text" placeholder="Price Per Unit" 
+                    {...register("PricePerUnit", {
+                        required: "This is required.",
+                        pattern: {
+                            value: /^\d+(\.\d+)?$/, // Allows numbers with optional decimal part
+                            message: 'This input is number only, including decimals.',
+                          },
+                    })} 
+                    />
                 </div>
                 <div>
                 <h3 style={{color:'white'}}>Choose Type of Medication: </h3>
@@ -93,6 +128,8 @@ export default function CreateMedicinesPage({appUser}) {
                         <option value="OUT_OF_STOCK">Out Of Stock</option>
                         <option value="RUNNING_LOW">Running Low</option>
                     </select> 
+
+                    
                 <div><p></p></div>
                 <hr color="orange"></hr>
                     <Button variant="contained" color="warning" size="large" type="submit">Submit</Button>

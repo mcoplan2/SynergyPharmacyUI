@@ -28,6 +28,6 @@ export default function ApprovedUserRequestsPage({appUser}){
             <Request key={request.id} request={request} />
         )}
 
-        {!getRequests || getRequests==0 && <h3>Loading Requests...</h3>}
+        {!getRequests || getRequests==0 && <h3>You have no medication at this pharmacy yet.</h3>}
     </>
 }

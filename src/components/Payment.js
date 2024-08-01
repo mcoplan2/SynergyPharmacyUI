@@ -79,13 +79,13 @@ export default function Payment({payment, payable, appUser}){
             },
         }}>
             <Typography >
-                {payment.userId.username}
+                {payment.userId.firstName} {payment.userId.lastName}
             </Typography>
             <hr color="orange"></hr>
             <p></p>
             {payment.creationDate && 
                 <Typography> 
-                Approved Date:  {payment.creationDate}
+                Approval Date:  {payment.creationDate}
                 </Typography>
             }
             <Typography >
@@ -96,17 +96,18 @@ export default function Payment({payment, payable, appUser}){
             <hr color="orange"></hr>
             <p></p>
             <Typography >
-                Total: ${payment.amount.toFixed(2)}
+                
+                <><br/><Typography>Payment Date:  {payment.updateDate}</Typography></>
             </Typography>
 
             {payable ?
                 <>
                     <br/>
-                    <Button onClick={payPayment}>Confirm</Button>
+                    <Button onClick={payPayment}>Purchase</Button>
                     <Button onClick={deletePayment}>Deny</Button>
                 </>
                 :
-                <><br/><Typography>Confirm Date:  {payment.updateDate}</Typography></>
+                <><br/><Typography>Total: ${payment.amount.toFixed(2)}</Typography></>
 
             }
         </Box>

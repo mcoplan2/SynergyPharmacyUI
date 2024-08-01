@@ -37,47 +37,38 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <div style={styles.wrapper}>
-      <div style={styles.content}>
-    <Navbar user={appUser} />
+        <div style={styles.content}>
+          <Navbar user={appUser} />
 
-    <Routes>
-      <Route path="/" element={<LoginPage updateAppUser={updateAppUser}/>} />
+            <Routes>
+              <Route path="/" element={<LoginPage updateAppUser={updateAppUser}/>} />
 
+                {appUser && 
+                  <>
+                    <Route path="/home" element={<HomePage appUser={appUser}/>} />
+                    <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
+                    <Route path="/refills/openrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
+                    <Route path="/refills/approvedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
+                    <Route path="/admin/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
+                    <Route path="/admin/pendingrefills" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
+                    <Route path="/user/editprofile" element={<EditProfilePage appUser={appUser}/>} />
 
+                    <Route path="/payments/outstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
+                    <Route path="/payments/paymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
+                    <Route path="/admin/allpayments" element={<AllPaymentsPage appUser={appUser}/>} />
 
-      {appUser && 
-        <>
-          <Route path="/home" element={<HomePage appUser={appUser}/>} />
-          <Route path="/refills/quickrefill" element={<CreateRequestsPage appUser={appUser}/>} />
-          <Route path="/refills/youropenrefills" element={<OpenUserRequestsPage appUser={appUser}/>} />
-          <Route path="/refills/yourapprovedrefills" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
-          <Route path="/admin/allrefills" element={<OpenRequestsPage appUser={appUser}/>} />
-          <Route path="/admin/pendingrefills" element={<ApproveDenyRequestsPage appUser={appUser}/>} />
-          <Route path="/user/editprofile" element={<EditProfilePage appUser={appUser}/>} />
-
-          <Route path="/payments/youroutstandingpayments" element={<OutstandingPaymentsPage appUser={appUser}/>} />
-          <Route path="/payments/yourpaymenthistory" element={<PaymentHistoryPage appUser={appUser}/>} />
-          <Route path="/admin/allpayments" element={<AllPaymentsPage appUser={appUser}/>} />
-
-          <Route path="/admin/addmedication" element={<CreateMedicinesPage appUser={appUser}/>} />
-          <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage appUser={appUser}/>} />
-          <Route path="/medicines/viewyourmedicine" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
-          
-        </>
-      }
-
-
-      <Route path="/login" element={
-        <LoginPage 
-          updateError={updateError} 
-          updateAppUser={updateAppUser} />
-      } />
-      
-    </Routes>
-    </div>
-    <Footer/>
-    </div>
-  </ThemeProvider>
+                    <Route path="/admin/addmedication" element={<CreateMedicinesPage appUser={appUser}/>} />
+                    <Route path="/medicines/viewallmedicine" element={<OpenMedicinesPage appUser={appUser}/>} />
+                    <Route path="/medicines/viewyourmedicine" element={<ApprovedUserRequestsPage appUser={appUser}/>} />
+                    
+                  </>
+                }
+              <Route path="/login" element={<LoginPage updateError={updateError} updateAppUser={updateAppUser} />} />
+            </Routes>
+        </div>
+      <Footer/>
+      </div>
+    </ThemeProvider>
   );
 };
 
@@ -90,7 +81,7 @@ const styles = {
   },
   content: {
     flex: 1,
-    padding: '5px',
+    padding: '0px',
   }
 };
 

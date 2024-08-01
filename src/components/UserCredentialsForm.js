@@ -53,10 +53,17 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     }
 
     return <>
-        <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstname"/><br/>
+
         <p></p>
-        <input type="text" value={lastname} onChange={handleChangeLastname} placeholder="lastname"/><br/>
         <p></p>
+        { (buttonLabel != "Login") &&
+            <div>
+            <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstname"/><br/>
+            <p></p>
+            <input type="text" value={lastname} onChange={handleChangeLastname} placeholder="lastname"/><br/>
+            <p></p>
+            </div>
+        }
         <input type="text" value={username} onChange={handleChangeUsername} placeholder="username"/><br/>
         <p></p>
         <input type="password" value={password} onChange={handleChangePassword} placeholder="password"/><br/>

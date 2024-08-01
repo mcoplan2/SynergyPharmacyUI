@@ -61,30 +61,6 @@ export default function ApproveDenyRequestsPage({appUser}) {
             setOpen(true);
         }
         
-
-
-        try{
-            const tokenAPI = updateApi(token);
-            const payload = {
-                amount: `${dosageCount * med.price}`,
-                medicineId: {
-                    id: med.id
-                },
-                payStatus: "UNPAID",
-                userId: {
-                    userId: creator.userId
-                },
-                reqId: {
-                    id: id
-                }
-            };
-            const res = await tokenAPI.post('payments', payload);
-            console.log("PAYMENT HERE")
-            console.log(res.data)
-        } catch(error) {
-            setErrorMessage(error.message);
-            setOpen(true);
-        }
         navigate("/home")
     }
 
@@ -171,8 +147,16 @@ export default function ApproveDenyRequestsPage({appUser}) {
 
     
   return (
+    <Box 
+    sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '60vh', // Ensure the parent container takes up the full height of the viewport
+    }}
+>
     <Box sx={{
-        width: 'auto',
+        width: 1000,
         height: 420,
         backgroundColor: '#272727',
         margin: 5,
@@ -214,6 +198,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
         <ErrorModal open={open}handleClose={handleClose} errorMessage={errorMessage}/>
     
       <Button color="error" variant="outlined" onClick={() => onDenySubmit(selectedRows)} sx={{backgroundColor:'black'}}>Deny</Button>
+    </Box>
     </Box>
     
   );

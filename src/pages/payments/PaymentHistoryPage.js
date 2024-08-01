@@ -26,6 +26,6 @@ export default function PaymentHistoryPage({appUser}){
             <Payment key={payment.paymentId} payment={payment} payable={false} appUser={appUser}/>
         )}
 
-        {!getPayments && <h3>Loading Payments...</h3>}
+        {!getPayments || getPayments==0 && <h3>You have no Payment History</h3>}
     </>
 }

@@ -55,8 +55,17 @@ export default function CreateMedicinesPage({appUser}) {
     
     return (
         <Box 
+        sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '60vh', // Ensure the parent container takes up the full height of the viewport
+        }}
+    >
+        
+        <Box 
             sx={{
-                width: 650,
+                width: 700,
                 height: 'auto',
                 minHeight: 320,
                 backgroundColor: '#272727',
@@ -72,7 +81,7 @@ export default function CreateMedicinesPage({appUser}) {
                     border: '1px solid white'
                 },
             }}>
-                <div dangerouslySetInnerHTML={{ __html: errorMessage }} />
+                
             <form id="test" onSubmit={handleSubmit(onSubmit, onError)}>
                 <h1 style={{color:'white'}}>Add a Medication: </h1>
                 <hr color="orange"></hr>
@@ -95,7 +104,7 @@ export default function CreateMedicinesPage({appUser}) {
                     {...register("AmountInStock", { 
                         required: "This is required.",
                         pattern: {
-                            value: /d+/,
+                            value: /^\d+$/,  // Corrected regex pattern
                             message: "This input is number only."
                           },
                     })} 
@@ -107,7 +116,7 @@ export default function CreateMedicinesPage({appUser}) {
                     {...register("PricePerUnit", {
                         required: "This is required.",
                         pattern: {
-                            value: /^\d+(\.\d+)?$/, // Allows numbers with optional decimal part
+                            value: /^\d*\.?\d+$/, // Allows numbers with optional decimal part
                             message: 'This input is number only, including decimals.',
                           },
                     })} 
@@ -138,5 +147,6 @@ export default function CreateMedicinesPage({appUser}) {
 
             <ErrorModal open={open}handleClose={handleClose} errorMessage={errorMessage} />
         </Box>
+    </Box>
     );
 }

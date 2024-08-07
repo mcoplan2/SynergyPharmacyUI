@@ -15,19 +15,17 @@ export default function HomePage({appUser}){
     const [getPayments, setPayments] = useState('');
     const [getApprovedRequests, setApprovedRequests] = useState('');
 
+    const calculateRefillDate = (updateDate, dosageCount, dosageFreq) => {
+        const parsedDate = new Date(updateDate);
+        const refillDate = new Date(parsedDate);
+        refillDate.setDate(refillDate.getDate() + (dosageCount / dosageFreq));
 
-    
-const calculateRefillDate = (updateDate, dosageCount, dosageFreq) => {
-    const parsedDate = new Date(updateDate);
-    const refillDate = new Date(parsedDate);
-    refillDate.setDate(refillDate.getDate() + (dosageCount / dosageFreq));
-
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return {
-        formattedUpdateDate: parsedDate.toLocaleDateString(undefined, options),
-        formattedRefillDate: refillDate.toLocaleDateString(undefined, options),
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return {
+            formattedUpdateDate: parsedDate.toLocaleDateString(undefined, options),
+            formattedRefillDate: refillDate.toLocaleDateString(undefined, options),
+        };
     };
-};
 
     useEffect(() => {
         async function getNumberOfRequests(){   
@@ -162,15 +160,10 @@ const calculateRefillDate = (updateDate, dosageCount, dosageFreq) => {
               }}
               key={request.id}
               title={request.medicineId.name}
-              description={request.reqId.dosageCount / request.reqId.dosageFreq+' pills'}
+              description={request.reqId.dosageCount+' pills -- '+request.reqId.dosageFreq+' daily'}
               extraInfo={'Fill Date: '+formattedUpdateDate+'\n'}
-              extraInfo2={'Refill On: '+formattedRefillDate}
+              extraInfo2={formattedRefillDate}
             >
-              <Typography>{request.reqId.dosageCount / request.reqId.dosageFreq} pills</Typography>
-              <Typography>Fill Date:</Typography>
-              <Typography> {formattedUpdateDate}</Typography>
-              <Typography>Need Refill On:</Typography>
-              <Typography>{formattedRefillDate}</Typography>
             </ExpandableCard>
           );
         })}

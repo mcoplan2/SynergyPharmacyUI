@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import ShareIcon from '@mui/icons-material/Share';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import { ButtonGroup } from '@mui/material';
+import {useNavigate} from "react-router-dom"
+
 
 const ExpandableCard = ({ title, description, extraInfo, extraInfo2 }) => {
     const [hovered, setHovered] = useState(false);
+
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const currentDate = new Date();
+    const formattedCurrentDate = currentDate.toLocaleDateString(undefined, options);
+    const navigate = useNavigate();
+    
+    const refillDate = new Date(extraInfo2);
+    const todaysDate = new Date();
+    console.log(refillDate)
+    console.log(todaysDate)
 
     return (
         <Card 
@@ -60,9 +66,38 @@ const ExpandableCard = ({ title, description, extraInfo, extraInfo2 }) => {
                         <Typography variant="body1" component="div">
                             {extraInfo}
                         </Typography>
-                        <Typography variant="body1" component="div">
-                            {extraInfo2}
-                        </Typography>
+
+                        {
+                        
+                        todaysDate < refillDate ? (
+                            <Typography variant="body1" component="div">
+                                Refill On: {extraInfo2}
+                            </Typography>
+                        ) : (
+                            <>
+                            <Typography variant="body1" component="div" color="red">
+                                Expired: {extraInfo2}
+                            </Typography>
+                            <ButtonGroup
+                                variant='outlined'
+                                size='small'
+                            >
+                
+                            <Button
+                                variant='contained'
+                                disableElevation
+                                onClick={() => navigate('/refills/quickrefill')}
+                                sx={{height:30}}
+                                color="warning"
+                                size='small'
+                            >
+                                REFILL
+                            </Button>
+                            </ButtonGroup>
+                            </>
+                        )
+                    }
+
                     </>
                 )}
             </CardContent>

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import { updateApi, getUserById } from '../../util/api';
-import Payment from "../../components/Payment";
+import { Box } from "@mui/material";
+import { DataGrid } from '@mui/x-data-grid';
 
 export default function PaymentHistoryPage({appUser}){
     const [getPayments, setPayments] = useState('');
+    const [selectedRows, setSelectedRows] = useState([]);
 
     useEffect(() => {
         async function getAllPayments(){   
@@ -20,12 +22,114 @@ export default function PaymentHistoryPage({appUser}){
         getAllPayments();
         }, []);
 
-        //console.log(getPayments)
-    return <>
-        {getPayments && getPayments.map((payment) => 
-            <Payment key={payment.paymentId} payment={payment} payable={false} appUser={appUser}/>
-        )}
-
-        {!getPayments || getPayments==0 && <h3>You have no Payment History</h3>}
-    </>
+        const columns = [
+            { field: 'paymentId', headerName: 'Payment ID', width: 120 },
+            {
+                field: 'firstName',
+                headerName: 'First Name',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.reqId.creator.firstName;
+                }
+            },
+            {
+                field: 'lastName',
+                headerName: 'Last Name',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.reqId.creator.lastName;
+                }
+            },
+            {
+                field: 'name',
+                headerName: 'Medication',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.medicineId.name;
+                }
+            },
+            {
+                field: 'receipt',
+                headerName: 'Receipt Date',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.updateDate;
+                }
+            },
+            {
+                field: 'amount',
+                headerName: 'Amount Paid',
+                width: 120,
+                valueGetter: (params) => {
+                    return "$"+params.row.amount;
+                }
+            },
+            {
+                field: 'invoice',
+                headerName: 'Invoice Date',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.creationDate;
+                }
+            },
+            {
+                field: 'status',
+                headerName: 'Payment Status',
+                width: 120,
+                valueGetter: (params) => {
+                    return params.row.payStatus;
+                }
+            },
+            ];
+    
+        
+      return (
+        <Box 
+        sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '60vh', // Ensure the parent container takes up the full height of the viewport
+        }}
+    >
+        <Box sx={{
+            width: 1000,
+            height: 420,
+            backgroundColor: '#272727',
+            margin: 5,
+            padding: 2,
+            paddingBottom: 15,
+            textAlign:"center",
+            border: '1px solid orange',
+        }}>
+            <h4 style={{color:'orange'}}>Payments</h4>
+          <DataGrid
+            sx={{
+                backgroundColor:'#272727',
+                border: '1px solid orange',
+                '&:hover': {
+                backgroundColor: 'black',
+                opacity: [0.9, 0.8, 0.95],
+                border: '1px solid white'
+                }
+            
+            }}
+            getRowId={(row) => row.paymentId}
+            rows={getPayments}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            onSelectionModelChange={(ids) => {
+                const selectedIDs = new Set(ids);
+                const selectedRows = getPayments.filter((payment) =>
+                  selectedIDs.has(payment.paymentId),
+                );
+      
+                setSelectedRows(selectedRows);
+              }}
+          />
+        </Box>
+        </Box>
+        
+      );
 }

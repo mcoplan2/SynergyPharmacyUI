@@ -35,7 +35,6 @@ export default function CreateRequestsPage({appUser}) {
                     id:medication.id,
                     label:medication.name
                 })))
-                console.log(getMedications)
             } catch(error) {
                 console.log(error)
             }
@@ -47,12 +46,7 @@ export default function CreateRequestsPage({appUser}) {
         const { username, token } = appUser;
         const userId = await getUserById(username);
         const tokenAPI = updateApi(token);
-        console.log("TESTING")
-        console.log(data.medication.id)
-        console.log(data.dosageCount.amount)
 
-
-        
         try{
             await tokenAPI.post('requests', {
                 dosageCount: data.dosageCount.amount,
@@ -208,7 +202,6 @@ export default function CreateRequestsPage({appUser}) {
                 <h3 style={{color:'white'}}>Enter your Dosage Frequency: </h3>
                 <TextField
                     id="component-outlined"
-                    defaultValue="Dosage Per Day"
                     label="Dosage Frequency"
                     sx={{
                         alignItems: 'center',

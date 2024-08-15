@@ -7,16 +7,12 @@ import { ButtonGroup } from '@mui/material';
 import {useNavigate} from "react-router-dom"
 
 
-const ExpandableCard = ({ title, description, extraInfo, extraInfo2 }) => {
+const ExpandableCardNoDate = ({ title, description, extraInfo, extraInfo2 }) => {
     const [hovered, setHovered] = useState(false);
 
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const currentDate = new Date();
-    const formattedCurrentDate = currentDate.toLocaleDateString(undefined, options);
     const navigate = useNavigate();
     
-    const refillDate = new Date(extraInfo2);
-    const todaysDate = new Date();
+
 
     return (
         <Card 
@@ -65,36 +61,11 @@ const ExpandableCard = ({ title, description, extraInfo, extraInfo2 }) => {
                             {extraInfo}
                         </Typography>
 
-                        {
-                        
-                        todaysDate < refillDate ? (
-                            <Typography variant="body1" component="div">
-                                Refill On: {extraInfo2}
-                            </Typography>
-                        ) : (
-                            <>
-                            <Typography variant="body1" component="div" color="red">
-                                Expired: {extraInfo2}
-                            </Typography>
-                            <ButtonGroup
-                                variant='outlined'
-                                size='small'
-                            >
-                
-                            <Button
-                                variant='contained'
-                                disableElevation
-                                onClick={() => navigate('/refills/quickrefill')}
-                                sx={{height:30}}
-                                color="warning"
-                                size='small'
-                            >
-                                REFILL
-                            </Button>
-                            </ButtonGroup>
-                            </>
-                        )
-                    }
+                        <Typography variant="body1" component="div">
+                            Status: {extraInfo2}
+                        </Typography>
+
+                    
 
                     </>
                 )}
@@ -104,4 +75,4 @@ const ExpandableCard = ({ title, description, extraInfo, extraInfo2 }) => {
     );
 }
 
-export default ExpandableCard;
+export default ExpandableCardNoDate;

@@ -9,7 +9,6 @@ import ExpandableCard from "../components/ExpandableCard";
 
 export default function HomePage({appUser}){
     const{ username, password, firstName, lastName } = appUser
-    console.log(appUser)
 
     const [getNumberRequests, setNumberRequests] = useState('');
     const [getPayments, setPayments] = useState('');
@@ -35,8 +34,6 @@ export default function HomePage({appUser}){
                 const tokenAPI = updateApi(token);
                 const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/OPEN")
                 setNumberRequests(res.data)
-                console.log("REQUESTS")
-                console.log(res.data)
             } catch(error) {
                 console.log(error)
             }
@@ -67,8 +64,6 @@ export default function HomePage({appUser}){
                     const tokenAPI = updateApi(token);
                     const res = await tokenAPI.get("/payments/userid/"+`${userId}`+"/paystatus/FULLY_PAID")
                     setApprovedRequests(res.data)
-                    console.log("PAID ONLY")
-                    console.log(getApprovedRequests)
                 } catch(error) {
                     console.log(error)
                 }

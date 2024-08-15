@@ -28,7 +28,6 @@ export default function Navbar(appUser){
 
     const username = appUser?.user?.username ?? '';
     const role = appUser?.user?.role ?? '';
-    console.log(username)
 
     const handleLogout = () => {
         // Perform logout actions here

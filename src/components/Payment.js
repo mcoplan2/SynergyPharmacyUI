@@ -85,7 +85,7 @@ export default function Payment({payment, payable, appUser}){
             <p></p>
             {payment.creationDate && 
                 <Typography> 
-                Approval Date:  {payment.creationDate}
+                Invoice Date:  {payment.creationDate}
                 </Typography>
             }
             <Typography >
@@ -97,8 +97,9 @@ export default function Payment({payment, payable, appUser}){
             <p></p>
             <Typography >
                 
-                <><br/><Typography>Payment Date:  {payment.updateDate}</Typography></>
+            <><br/><Typography>Total: ${payment.amount.toFixed(2)}</Typography></>
             </Typography>
+
 
             {payable ?
                 <>
@@ -107,7 +108,7 @@ export default function Payment({payment, payable, appUser}){
                     <Button onClick={deletePayment}>Deny</Button>
                 </>
                 :
-                <><br/><Typography>Total: ${payment.amount.toFixed(2)}</Typography></>
+                <><br/><Typography>Payment Date:  {payment.updateDate}</Typography></>
 
             }
         </Box>

@@ -12,3 +12,5 @@
 ~~Add a Home page~~
 
 ~~Add modals for error / success~~
+
+Add a component and page for users to submit a support ticket

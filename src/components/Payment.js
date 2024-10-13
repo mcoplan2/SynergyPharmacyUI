@@ -1,32 +1,30 @@
 import { Button } from "@mui/material"
 import Box from "@mui/material/Box"
+import {useNavigate} from "react-router-dom"
 import Typography from "@mui/material/Typography"
-import { useEffect, useState } from "react";
-import { updateApi, getUserById } from '../util/api';
+import { useState } from "react";
+import { updateApi } from '../util/api';
 
 export default function Payment({payment, payable, appUser}){
     const [visiableFlashCard, setVisiableFlashCard] = useState(true);
 
-    console.log("HELLO!!!!!!!!!!!!!!!!!!!!!")
-    console.log(payment.updateDate)
-    console.log(payment.creationDate)
+    const navigate = useNavigate();
 
     const payPayment = async () => {
         setVisiableFlashCard(false)
 
-        const { username, token } = appUser;
-        const userId = await getUserById(username);
+        const { token } = appUser;
         try{
             const tokenAPI = updateApi(token);
             tokenAPI.post('payments/update', {
                 paymentId: payment.paymentId,
                 amount: payment.amount,
-                medicineId: {
-                    id: payment.medicineId.id
+                medicationId: {
+                    id: payment.medicationId.id
                 },
                 payStatus: "FULLY_PAID",
-                userId:{
-                    userId: payment.userId.userId
+                user:{
+                    userId: payment.user.userId
                 },
                 reqId:{
                     id: payment.reqId.id
@@ -36,29 +34,18 @@ export default function Payment({payment, payable, appUser}){
         } catch(error) {
             console.log(error)
         }
+        navigate("/home")
     }
 
-    const deletePayment = async () => {
+    const cancelPayment = async () => {
         setVisiableFlashCard(false)
-
-        const { username, token } = appUser;
-        const userId = await getUserById(username);
-        try{
-            const tokenAPI = updateApi(token);
-            tokenAPI.delete('payments/update', {
-                paymentId: payment.paymentId,
-                }
-            )
-
-        } catch(error) {
-            console.log(error)
-        }
+        navigate("/home")
     }
 
 
     
 
-
+console.log(payment);
 
   return (
     <>
@@ -79,7 +66,7 @@ export default function Payment({payment, payable, appUser}){
             },
         }}>
             <Typography >
-                {payment.userId.firstName} {payment.userId.lastName}
+                {payment.user.firstName} {payment.user.lastName}
             </Typography>
             <hr color="orange"></hr>
             <p></p>
@@ -89,8 +76,8 @@ export default function Payment({payment, payable, appUser}){
                 </Typography>
             }
             <Typography >
-                {payment.medicineId.name}:      
-                ${payment.medicineId.price.toFixed(2)} per dosage <br/>
+                {payment.medicationId.name}:      
+                ${payment.medicationId.price.toFixed(2)} per dosage <br/>
                 {payment.reqId.dosageCount} doses
             </Typography>
             <hr color="orange"></hr>
@@ -105,7 +92,7 @@ export default function Payment({payment, payable, appUser}){
                 <>
                     <br/>
                     <Button onClick={payPayment}>Purchase</Button>
-                    <Button onClick={deletePayment}>Deny</Button>
+                    <Button onClick={cancelPayment}>Cancel</Button>
                 </>
                 :
                 <><br/><Typography>Payment Date:  {payment.updateDate}</Typography></>

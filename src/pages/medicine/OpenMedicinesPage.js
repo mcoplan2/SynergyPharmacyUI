@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react"
-import Medicine from "../../components/Medicine";
 import { updateApi } from "../../util/api";
 import AlphabetFilter from "../../components/AlphabetFilter";
+import Medication from "../../components/Medication";
 
 // THIS WILL EVENTUALLY BE ADMIN ONLY
-export default function OpenMedicinesPage({appUser}){
+export default function OpenMedicationPage({appUser}){
 
-    const [getMedicines, setMedicines] = useState('');
+    const [getMedication, setMedication] = useState('');
     const [selectedLetter, setSelectedLetter] = useState(null);
     const [selectedSearch, setSelectedSearch] = useState('');
 
     useEffect(() => {
-        async function getAllMedicines(){
+        async function getAllMedication(){
             const { token } = appUser;
             const tokenAPI = updateApi(token);
-            console.log(selectedSearch)
 
             let query = '';
             if(selectedLetter) {
@@ -23,24 +22,23 @@ export default function OpenMedicinesPage({appUser}){
             if(selectedSearch) {
                 query += (query ? '&' : '') + `query=${selectedSearch}`
             }
-            console.log(query)
             try {
-                const res = await tokenAPI.get("/medicines/filter"+`${query ? `?${query}` : ''}`);
-                setMedicines(res.data)
+                const res = await tokenAPI.get("/medications/filter"+`${query ? `?${query}` : ''}`);
+                setMedication(res.data)
             } catch(error) {
                 console.log(error)
             }
         }
-        getAllMedicines();
+        getAllMedication();
         }, [selectedLetter, selectedSearch, appUser]);
 
     return <>
         <p></p>
         <AlphabetFilter onLetterClick={setSelectedLetter} onSearch={setSelectedSearch} />
-        {getMedicines && getMedicines.map((medicine) => 
-            <Medicine key={medicine.id} medicine={medicine} />
+        {getMedication && getMedication.map((medication) => 
+            <Medication key={medication.id} medication={medication} />
         )}
 
-        {!getMedicines && <h3>Loading Medicines...</h3>}
+        {!getMedication && <h3>Loading Medicines...</h3>}
     </>
 }

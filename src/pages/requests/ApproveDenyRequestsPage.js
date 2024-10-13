@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from "react"
-import { Button, Modal, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
 import {useNavigate} from "react-router-dom"
@@ -31,7 +31,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             }
         }
         getAllRequests();
-        }, []);
+        }, [appUser]);
 
     const onApproveSubmit = async (request) => {
         // Deconstruct the array of objects
@@ -39,7 +39,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             setErrorMessage("Please select a refill");
             setOpen(true);
         }
-        const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
+        const {dosageCount, dosageFreq, requestType, id, user, med } = request[0];
         const { username, token } = appUser;
         const userId = await getUserById(username);
         try{
@@ -49,8 +49,8 @@ export default function ApproveDenyRequestsPage({appUser}) {
                 requestType: requestType,
                 dosageCount: dosageCount,
                 dosageFreq: dosageFreq,
-                creator: {
-                    userId: creator.userId
+                user: {
+                    userId: user.userId
                 },
                 med: {
                     id: med.id
@@ -71,7 +71,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             setOpen(true);
         }
         // Deconstruct the array of objects
-        const {dosageCount, dosageFreq, requestType, id, creator, med } = request[0];
+        const {dosageCount, dosageFreq, requestType, id, user, med } = request[0];
         const { username, token } = appUser;
         const userId = await getUserById(username);
         try{
@@ -81,8 +81,8 @@ export default function ApproveDenyRequestsPage({appUser}) {
                 requestType: requestType,
                 dosageCount: dosageCount,
                 dosageFreq: dosageFreq,
-                creator: {
-                    userId: creator.userId
+                user: {
+                    userId: user.userId
                 },
                 med: {
                     id: med.id
@@ -92,6 +92,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             setErrorMessage(error.message);
             setOpen(true);
         }
+        navigate("/home")
     }
 
     const columns = [
@@ -101,7 +102,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             headerName: 'First Name',
             width: 150,
             valueGetter: (params) => {
-                return params.row.creator.firstName;
+                return params.row.user.firstName;
             }
         },
         {
@@ -109,7 +110,7 @@ export default function ApproveDenyRequestsPage({appUser}) {
             headerName: 'Last Name',
             width: 150,
             valueGetter: (params) => {
-                return params.row.creator.lastName;
+                return params.row.user.lastName;
             }
         },
         {
@@ -145,7 +146,6 @@ export default function ApproveDenyRequestsPage({appUser}) {
         },
         ];
 
-    
   return (
     <Box 
     sx={{

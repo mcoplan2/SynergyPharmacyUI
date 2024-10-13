@@ -1,14 +1,11 @@
-import {Link} from "react-router-dom";
-import RequestForm from "../components/SelectMedicationsMenu";
-import { Paper, Typography, Stack, Box, Card } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import { updateApi } from "../util/api";
 import { getUserById } from "../util/api";
-import { get } from "react-hook-form";
 import ExpandableCard from "../components/ExpandableCard";
 
 export default function HomePage({appUser}){
-    const{ username, password, firstName, lastName } = appUser
+    const{ firstName, lastName } = appUser
 
     const [getNumberRequests, setNumberRequests] = useState('');
     const [getPayments, setPayments] = useState('');
@@ -39,7 +36,7 @@ export default function HomePage({appUser}){
             }
         }
         getNumberOfRequests();
-        }, []);
+        }, [appUser]);
 
     useEffect(() => {
         async function getAllPayments(){   
@@ -54,7 +51,7 @@ export default function HomePage({appUser}){
             }
         }
         getAllPayments();
-        }, []);
+        }, [appUser]);
 
         useEffect(() => {
             async function getApprovedRequests(){   
@@ -69,8 +66,7 @@ export default function HomePage({appUser}){
                 }
             }
             getApprovedRequests();
-            }, []);
-
+            }, [appUser]);
     return <>
     <Box
       sx={{
@@ -82,9 +78,8 @@ export default function HomePage({appUser}){
         }} >
         <Box 
           sx={{
-              minWidth: 300,
-              maxWidth: 600,
-              minHeight: 150,
+              minWidth: 450,
+              minHeight: 180,
               maxHeight: 'auto',
               padding: 2,
               backgroundColor: '#272727',
@@ -136,7 +131,6 @@ export default function HomePage({appUser}){
             <ExpandableCard
               sx={{
                 minWidth: 150,
-                maxWidth: 300,
                 minHeight: 160,
                 maxHeight: 'auto',
                 padding: 1,
@@ -154,7 +148,7 @@ export default function HomePage({appUser}){
                 },
               }}
               key={request.id}
-              title={request.medicineId.name}
+              title={request.medicationId.name}
               description={request.reqId.dosageCount+' pills -- '+request.reqId.dosageFreq+' daily'}
               extraInfo={'Fill Date: '+formattedUpdateDate+'\n'}
               extraInfo2={formattedRefillDate}

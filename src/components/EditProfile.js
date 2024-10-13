@@ -35,8 +35,6 @@ export default function EditProfile({updateError, appUser}){
                 payload.lastName = user.lastName;
             }
 
-            console.log("Payload:");
-            console.log(payload);
             let response = await API.patch('/users/'+`${userId}`, payload);
             window.location.href="/";
             console.log(response.data)

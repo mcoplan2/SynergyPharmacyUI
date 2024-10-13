@@ -2,9 +2,6 @@ import { useEffect, useState } from "react"
 import { updateApi, getUserById } from '../../util/api';
 import Payment from "../../components/Payment";
 
-
-
-
 export default function OutstandingPaymentsPage({appUser}){
     const [getPayments, setPayments] = useState('');
 
@@ -21,13 +18,13 @@ export default function OutstandingPaymentsPage({appUser}){
             }
         }
         getAllPayments();
-        }, []);
+        }, [appUser]);
 
     return <>
         {getPayments && getPayments.map((payment) => 
             <Payment key={payment.paymentId} payment={payment} payable={true} appUser={appUser} />
         )}
-
-        {!getPayments || getPayments ==0 && <h3>No Payments due at this time</h3>}
+ 
+        {(!getPayments || getPayments === 0) && <h3>No Payments due at this time</h3>}
     </>
 }

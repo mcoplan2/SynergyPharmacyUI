@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 export default function UserCredentialsForm({buttonLabel, updateFunction}){
@@ -47,8 +47,6 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
             lastName: lastname,
             password: password,
         }
-        console.log("USER")
-        console.log(user)
         updateFunction(user)
     }
 
@@ -56,7 +54,7 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
 
         <p></p>
         <p></p>
-        { (buttonLabel != "Login") &&
+        { (buttonLabel !== "Login") &&
             <div>
             <input type="text" value={firstname} onChange={handleChangeFirstname} placeholder="firstname"/><br/>
             <p></p>

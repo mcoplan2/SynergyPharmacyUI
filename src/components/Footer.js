@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <footer style={styles.footer}>
-            <p>&copy; 2021 - 2024 Synergy Pharmacy</p>
+            <p>&copy; 2022 - 2024 Synergy Pharmacy</p>
         </footer>
     );
 }

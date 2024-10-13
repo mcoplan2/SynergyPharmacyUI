@@ -13,14 +13,12 @@ export default function CreateMedicinesPage({appUser}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [open, setOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    console.log(errors);
 
     const onSubmit = async (data) => {
-        console.log(data)
         const { token } = appUser;
         const tokenAPI = updateApi(token);
         try{
-            await tokenAPI.post('/medicines', {
+            await tokenAPI.post('/medications', {
                 name: data.MedicationName,
                 stock: data.AmountInStock,
                 price: data.PricePerUnit,
@@ -29,7 +27,8 @@ export default function CreateMedicinesPage({appUser}) {
 
             })
         } catch(error) {
-            console.log(error)
+            setErrorMessage(error.response.data || 'An error occurred'); // Set error message from response or default
+            setOpen(true); // Open the modal
         }
     }
 
@@ -45,7 +44,6 @@ export default function CreateMedicinesPage({appUser}) {
           });
         if (errorDetails.length > 0) {
             const formattedErrors = errorDetails.map(error => `${error.field}: ${error.message}`).join(`\n`);
-            console.log(formattedErrors)
             setErrorMessage(formattedErrors);
             setOpen(true);
         }

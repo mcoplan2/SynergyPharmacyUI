@@ -26,7 +26,7 @@ export default function OpenUserRequestsPage({appUser}){
 
             try {
                 const tokenAPI = updateApi(token);
-                const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/OPEN/medicine/filter"+`${query ? `?${query}` : ''}`)
+                const res = await tokenAPI.get("/requests/user/"+`${userId}`+"/type/OPEN/medication/filter"+`${query ? `?${query}` : ''}`)
                 setRequests(res.data)
             } catch(error) {
                 console.log(error)

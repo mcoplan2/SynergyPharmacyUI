@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react"
-import { updateApi, getUserById } from '../../util/api';
+import { updateApi } from '../../util/api';
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 
 export default function PaymentHistoryPage({appUser}) {
 
     const [getPayments, setPayments] = useState('');
-    const [selectedRows, setSelectedRows] = useState([]);
 
     useEffect(() => {
         async function getAllPayments(){   
-            const { username, token } = appUser;
-            const userId = await getUserById(username);
+            const { token } = appUser;
             try {
                 const tokenAPI = updateApi(token);
                 const res = await tokenAPI.get("/payments/paystatus/FULLY_PAID")
@@ -31,7 +29,7 @@ export default function PaymentHistoryPage({appUser}) {
                 headerName: 'First Name',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.reqId.creator.firstName;
+                    return params.row.reqId.user.firstName;
                 }
             },
             {
@@ -39,7 +37,7 @@ export default function PaymentHistoryPage({appUser}) {
                 headerName: 'Last Name',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.reqId.creator.lastName;
+                    return params.row.reqId.user.lastName;
                 }
             },
             {
@@ -47,7 +45,7 @@ export default function PaymentHistoryPage({appUser}) {
                 headerName: 'Medication',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.medicineId.name;
+                    return params.row.medicationId.name;
                 }
             },
             {
@@ -121,14 +119,7 @@ export default function PaymentHistoryPage({appUser}) {
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
-            onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRows = getPayments.filter((payment) =>
-                  selectedIDs.has(payment.paymentId),
-                );
-      
-                setSelectedRows(selectedRows);
-              }}
+            
           />
         </Box>
         </Box>

@@ -5,7 +5,6 @@ import { DataGrid } from '@mui/x-data-grid';
 
 export default function PaymentHistoryPage({appUser}){
     const [getPayments, setPayments] = useState('');
-    const [selectedRows, setSelectedRows] = useState([]);
 
     useEffect(() => {
         async function getAllPayments(){   
@@ -20,7 +19,7 @@ export default function PaymentHistoryPage({appUser}){
             }
         }
         getAllPayments();
-        }, []);
+        }, [appUser]);
 
         const columns = [
             { field: 'paymentId', headerName: 'Payment ID', width: 120 },
@@ -29,7 +28,7 @@ export default function PaymentHistoryPage({appUser}){
                 headerName: 'First Name',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.reqId.creator.firstName;
+                    return params.row.reqId.user.firstName;
                 }
             },
             {
@@ -37,7 +36,7 @@ export default function PaymentHistoryPage({appUser}){
                 headerName: 'Last Name',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.reqId.creator.lastName;
+                    return params.row.reqId.user.lastName;
                 }
             },
             {
@@ -45,7 +44,7 @@ export default function PaymentHistoryPage({appUser}){
                 headerName: 'Medication',
                 width: 120,
                 valueGetter: (params) => {
-                    return params.row.medicineId.name;
+                    return params.row.medicationId.name;
                 }
             },
             {
@@ -119,14 +118,7 @@ export default function PaymentHistoryPage({appUser}){
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[10]}
-            onSelectionModelChange={(ids) => {
-                const selectedIDs = new Set(ids);
-                const selectedRows = getPayments.filter((payment) =>
-                  selectedIDs.has(payment.paymentId),
-                );
-      
-                setSelectedRows(selectedRows);
-              }}
+           
           />
         </Box>
         </Box>

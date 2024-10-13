@@ -3,8 +3,7 @@ import { Box, Typography } from "@mui/material";
 import ExpandableCardNoDate from './ExpandableCardNoDate';
 
 
-export default function Medicine({medicine}) {
-
+export default function Medication({medication}) {
 
   return (
     <Box
@@ -30,10 +29,10 @@ export default function Medicine({medicine}) {
               border: '1px solid white'
           },
       }}
-      title={medicine.name}
-      description={medicine.stock+' in stock $'+medicine.price+' per pill'}
-      extraInfo={'Type: '+ medicine.type}
-      extraInfo2={medicine.status}
+      title={medication.name}
+      description={medication.stock+' in stock $'+medication.price+' per pill'}
+      extraInfo={'Type: '+ medication.type}
+      extraInfo2={medication.status}
       >
 
         

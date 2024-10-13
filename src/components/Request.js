@@ -1,6 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Stack, Box } from "@mui/material";
-import ExpandableCard from './ExpandableCard';
+import { Typography, Box } from "@mui/material";
 import ExpandableCardNoDate from './ExpandableCardNoDate';
 
 
@@ -32,13 +31,13 @@ export default function Request({request}) {
             },
         }}
             title={request.med.name}
-            description={request.creator.firstName+' '+request.creator.lastName}
+            description={request.user.firstName+' '+request.user.lastName}
             extraInfo={request.dosageCount+' pills -- '+request.dosageFreq+' daily '}
             extraInfo2={request.requestType}
         >
 
         <Typography >
-            {request.creator.firstName} {request.creator.lastName}
+            {request.user.firstName} {request.user.lastName}
         </Typography>
         <hr color="orange"></hr>
         <p></p>

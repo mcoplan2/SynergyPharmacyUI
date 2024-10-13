@@ -1,9 +1,8 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import SelectMedicationsMenu from '../../components/SelectMedicationsMenu';
 import { updateApi } from '../../util/api';
 import { getUserById } from '../../util/api';
-import { Box, Input, OutlinedInput, InputLabel } from '@mui/material';
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import {useNavigate} from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -15,8 +14,6 @@ export default function CreateRequestsPage({appUser}) {
     const { handleSubmit, control, register } = useForm();
     const [open, setOpen] = useState(false);
     const dosageOptions = [{label:'30', amount:30}, {label:'60', amount:60}, {label:'90', amount:90}];
-    const [inputValue, setInputValue] = useState('');
-    const [getdosageOptions, setDosageOptions] = useState(dosageOptions[0]);
     const [errorMessage, setErrorMessage] = useState('');
     const [getMedications, setMedication] = useState([]);
 
@@ -30,7 +27,7 @@ export default function CreateRequestsPage({appUser}) {
             try {
                 const { token } = appUser;
                 const tokenAPI = updateApi(token);
-                const res = await tokenAPI.get("/medicines")
+                const res = await tokenAPI.get("/medications")
                 setMedication(res.data.map(medication => ({
                     id:medication.id,
                     label:medication.name
@@ -40,7 +37,7 @@ export default function CreateRequestsPage({appUser}) {
             }
         }
         getAllMedicines();
-        }, []);
+        }, [appUser]);
 
     const onSubmit = async (data) => {
         const { username, token } = appUser;
@@ -54,16 +51,15 @@ export default function CreateRequestsPage({appUser}) {
                 med: {
                     id: data.medication.id
                 },
-                creator : {
+                user : {
                     userId: `${userId}`
                 },
             })
-
+            navigate("/home")
         } catch(error) {
             setErrorMessage(error.response.data || 'An error occurred'); // Set error message from response or default
             setOpen(true); // Open the modal
-        }
-
+        } 
     }
 
     const onError = (errors) => {

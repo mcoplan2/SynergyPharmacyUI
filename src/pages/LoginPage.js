@@ -46,7 +46,7 @@ export default function LoginPage({updateError, updateAppUser}){
                          },
                         '& .MuiTabs-indicator': { backgroundColor: 'orange' }, // Indicator color
                       }}
-                    textColor="orange" 
+                    textColor="primary" 
                     indicatorColor="orange" 
                     variant="fullWidth" 
                     aria-label={"login/registration tab selection"}>
